@@ -42,13 +42,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
   res.render("login", {
-    layout: "main",
+    layout: "userLogin",
   });
 });
 
 app.get("/users", (req, res) => {
   res.render("users", {
-    layout: "main",
+    layout: "userRegister",
   });
 });
 
@@ -58,7 +58,7 @@ app.post("/login", (req, res) => {
   users.getUser(req.body.user, (dataUser) => {
     if (!dataUser.confirm) {
       res.render("users", {
-        layout: "main",
+        layout: "userRegister",
         message: {
           class: "failed",
           content: "Ha ocurrido un erro inesperdo :(",
@@ -67,7 +67,7 @@ app.post("/login", (req, res) => {
     }
     if (dataUser.user) {
       res.render("users", {
-        layout: "main",
+        layout: "userRegister",
         message: {
           class: "failed",
           content: "ya existe un usuario registrado con ese nombre",
@@ -79,7 +79,7 @@ app.post("/login", (req, res) => {
 
     if (!req.body.user || !req.body.password) {
       res.render("users", {
-        layout: "main",
+        layout: "userRegister",
         message: {
           class: "failed",
           content: "Debe completar todos los campos",
@@ -91,7 +91,7 @@ app.post("/login", (req, res) => {
 
     if (req.body.password !== req.body.confirmPassword) {
       res.render("users", {
-        layout: "main",
+        layout: "userRegister",
         message: {
           class: "failed",
           content: "Las contraseñas deben ser iguales",
@@ -106,7 +106,7 @@ app.post("/login", (req, res) => {
     users.registerUser(req.body.user, req.body.password, (dataUser) => {
       if (dataUser) {
         res.render("login", {
-          layout: "main",
+          layout: "userLogin",
           message: {
             class: "approved",
             content: "Usuario registrado con exito",
@@ -129,7 +129,7 @@ app.post("/uploadTrack", (req, res) => {
     } else {
       console.log(dataUser);
       res.render("login", {
-        layout: "main",
+        layout: "userLogin",
         message: {
           class: "failed",
           content: "Por favor verifique los datos",

@@ -47,6 +47,11 @@ body {
   margin: 15px;
 }
 
+.contentUser {
+  display: inline-block;
+  margin: 50px 0 50px 50px;
+}
+
 .reg {
   padding: 10px;
   color: rgb(100, 97, 97);
@@ -128,10 +133,15 @@ ul {
   cursor: pointer;
 }
 
-img {
+img,
+.userPicture {
   width: 50px;
   float: right;
   margin: 20px;
+}
+
+.userPicture {
+  float: none;
 }
 
 .app {
@@ -177,6 +187,10 @@ img {
 }
 
 @media (max-width: 600px) {
+  body {
+    line-height: 0;
+  }
+
   .app {
     flex-direction: column;
   }
@@ -205,6 +219,10 @@ img {
     margin: 25% auto 20px auto;
   }
 
+  .contentUser {
+    margin: 50px 0 10px 50px;
+  }
+
   .uploadTrack {
     width: auto;
     margin: 20px;
@@ -224,7 +242,7 @@ img {
     width: 92%;
   }
 }
-@media (max-width: 400px) {
+@media (max-width: 450px) {
   #newId,
   #track,
   #artist,
@@ -237,5 +255,8 @@ img {
   select,
   #submitTrack {
     width: 92%;
+  }
+  .contentUser {
+    margin: 50px 0 50px 50px;
   }
 }

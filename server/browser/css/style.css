@@ -1,0 +1,241 @@
+html,
+body {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(120deg, rgb(252, 203, 144), rgb(211, 89, 174));
+}
+
+html,
+body,
+h1,
+ul {
+  margin: 0;
+}
+
+body {
+  line-height: 1;
+}
+
+.tittle {
+  color: aliceblue;
+  font-family: sans-serif;
+  text-align: center;
+  padding: 75px 0 0 0;
+  font-size: 80px;
+}
+
+.login,
+.register {
+  background: aliceblue;
+  width: 280px;
+  height: 300px;
+  margin: 5% auto 20px auto;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  border-radius: 4px;
+  text-align: center;
+}
+
+.uploadTrack {
+  float: right;
+  margin: 50px;
+  border: 1px solid blanchedalmond;
+  width: 600px;
+  height: 300px;
+}
+
+.upload {
+  margin: 15px;
+}
+
+.reg {
+  padding: 10px;
+  color: rgb(100, 97, 97);
+  font-size: 23px;
+  margin-bottom: 0;
+}
+
+.register input[type="text"] {
+  margin-top: 10px;
+}
+
+input,
+select {
+  margin: 10px 20px 0 20px;
+  padding: 15px;
+  width: 70%;
+  background: rgb(223, 222, 222);
+  border: 0;
+  font-size: 16px;
+}
+
+#newId,
+#track,
+#artist,
+select,
+#submitTrack {
+  margin: 15px 15px 0 15px;
+  width: 90%;
+}
+
+select,
+#submitTrack {
+  width: 95%;
+}
+
+input[type="submit"] {
+  margin-bottom: 0;
+  width: 81%;
+  background: rgb(43, 36, 41);
+  color: aliceblue;
+}
+input[type="text"] {
+  margin-top: 30px;
+}
+.exit:hover,
+input[type="submit"]:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+#buscar {
+  height: 100%;
+  text-indent: -9999px;
+  width: 50px;
+  border: none;
+  background-image: url(/img/lupa.png);
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-color: white;
+}
+
+#contentListTracks {
+  flex: 1;
+}
+
+#contentTrack,
+ul {
+  list-style: none;
+}
+
+.exit {
+  font-size: 18px;
+  margin: 20px 20px 0 0;
+  padding: 5px 20px;
+  border: none;
+  background: rgb(43, 36, 41);
+  color: aliceblue;
+  border-radius: 5px;
+  float: right;
+  cursor: pointer;
+}
+
+img {
+  width: 50px;
+  float: right;
+  margin: 20px;
+}
+
+.app {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+.track {
+  padding: 20px;
+  border-bottom: 2px solid wheat;
+  cursor: pointer;
+  color: darkmagenta;
+  font-size: 18px;
+  margin: 0;
+}
+
+#contentAudio {
+  flex: 2;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.failed {
+  width: 30%;
+  margin: auto;
+  text-align: center;
+  color: red;
+  font-size: 17px;
+  padding: 15px;
+}
+
+.approved {
+  width: 30%;
+  margin: auto;
+  text-align: center;
+  background: lightgreen;
+  color: green;
+  font-size: 17px;
+  padding: 15px;
+}
+
+@media (max-width: 600px) {
+  .app {
+    flex-direction: column;
+  }
+
+  .app {
+    height: 80%;
+  }
+
+  #contentTrack {
+    padding: 20px;
+  }
+
+  #contentListTracks {
+    flex: 3;
+  }
+
+  #contentAudio {
+    flex: 1;
+  }
+  .tittle {
+    font-size: 50px;
+  }
+
+  .login,
+  .register {
+    margin: 25% auto 20px auto;
+  }
+
+  .uploadTrack {
+    width: auto;
+    margin: 20px;
+  }
+
+  #newId,
+  #track,
+  #artist,
+  select,
+  #submitTrack {
+    margin: 15px auto 0 15px;
+    width: 85%;
+  }
+
+  select,
+  #submitTrack {
+    width: 92%;
+  }
+}
+@media (max-width: 400px) {
+  #newId,
+  #track,
+  #artist,
+  select,
+  #submitTrack {
+    margin: 15px auto 0 15px;
+    width: 83%;
+  }
+
+  select,
+  #submitTrack {
+    width: 92%;
+  }
+}

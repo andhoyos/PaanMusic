@@ -1,0 +1,18 @@
+<div class="app">
+    <div id="contentListTracks">
+        <ul id="contentTrack">
+            {{#each cancion}}
+            <div>
+                <li>
+                    <p class="track" id="{{this.id}}" onclick="fileName({{this.id}})">{{this.track}}</p>
+                </li>
+            </div>
+            {{/each}}
+        </ul>
+    </div>
+
+    <div id="contentAudio">
+        <p id="audioRep"></p>
+        <audio id="audio" src="" controls autoplay></audio>
+    </div>
+</div>

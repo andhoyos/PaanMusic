@@ -1,0 +1,24 @@
+<div class="uploadTrack">
+    <form class="upload" action="/tracks" method="POST" enctype="multipart/form-data">
+        <input type="text" name="newId" id="newId" style="display: none;">
+        <input type="file" name="track" id="track" accept="audio/*" onclick="addId()">
+        <input type="text" name="userName" id="userName" style="display: none;">
+        <input type="text" name="artist" id="artist" placeholder="Ingrese Artista">
+        <select name="genres" id="genres" required>
+            <option value="AllGeners">--Seleccione un Genero--</option>
+            <option value="Bachata">Bachata</option>
+            <option value="Salsa">Salsa</option>
+        </select>
+        <input type="submit" value="Enviar" id="submitTrack">
+    </form>
+</div>
+{{!-- <div>
+    <form action="/canciones" method="POST">
+        <input type="search" name="cancion" id="cancion">
+        <input type="submit" value="Buscar" id="buscar">
+    </form>
+</div> --}}
+
+{{#if message}}
+<p class="{{message.class}}">{{message.content}}</p>
+{{/if}}

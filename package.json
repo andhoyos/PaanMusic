@@ -1,0 +1,20 @@
+{
+  "name": "streamig",
+  "version": "1.0.0",
+  "description": "streaming-con-node",
+  "main": "server.js",
+  "scripts": {
+    "star": "node server/server.js"
+  },
+  "author": "Andres Hoyos",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-handlebars": "^4.0.5",
+    "express-session": "^1.17.1",
+    "mongodb": "^3.5.9",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.2"
+  }
+}

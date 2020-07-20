@@ -1,8 +1,9 @@
 # Streaming
 
-Streaming de musica donde se implementa el back end con Nodejs incluyendo el manejo express, express-handlebars, express-session 
+Streaming de musica donde se podra subir y descargar canciones.
+Se implementa el back end con Nodejs incluyendo el manejo express, express-handlebars, express-session 
 la base de datos con MongoBd y front end con Css3, HTML5, Javascript(ECMAScript6).
-donde se podra subir y descargar canciones.
+
 
 ## Comenzando 🚀
 Para comenzar debera descargar el repositorio

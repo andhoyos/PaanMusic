@@ -18,7 +18,7 @@ Para iniciar
 
 ## Construido con 🛠️
 
-- **Nodejs** incluyendo el manejo **express, express-handlebars, express-session**
+- **Nodejs** incluyendo el manejo **express, express-handlebars,multer, express-session**
 
 - **MongoDB**
 

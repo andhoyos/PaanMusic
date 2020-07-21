@@ -180,8 +180,7 @@ img,
   width: 30%;
   margin: auto;
   text-align: center;
-  background: lightgreen;
-  color: green;
+  color: aliceblue;
   font-size: 17px;
   padding: 15px;
 }
@@ -240,6 +239,11 @@ img,
   select,
   #submitTrack {
     width: 92%;
+  }
+
+  .failed,
+  .approved {
+    width: auto;
   }
 }
 @media (max-width: 450px) {

@@ -7,7 +7,6 @@ const validateUser = (user, password, cbResult) => {
     // si hay error en la conexion con la base de datos retorna mensaje de error
     if (err) {
       cbResult({
-        confirm: false,
         mesage: {
           class: "failed",
           content: "Ha ocurrido un error de conexion :(",
@@ -26,7 +25,6 @@ const validateUser = (user, password, cbResult) => {
         //si no se pueden consultar los datos retorna error
         if (err) {
           cbResult({
-            confirm: false,
             mesage: {
               class: "failed",
               content: "Ha ocurrido un error de coexion intentelo nuevamente",
@@ -35,7 +33,6 @@ const validateUser = (user, password, cbResult) => {
         } else {
           if (!entry) {
             cbResult({
-              confirm: false,
               mesage: {
                 class: "failed",
                 content: "Por favor verifique los datos",
@@ -43,7 +40,9 @@ const validateUser = (user, password, cbResult) => {
             });
           } else {
             cbResult({
-              confirm: true,
+              user: {
+                user: entry.user,
+              },
             });
           }
         }

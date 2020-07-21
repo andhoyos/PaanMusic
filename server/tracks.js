@@ -31,7 +31,7 @@ const getTrack = (originalName, cbResult) => {
 const uploadTrack = (
   newId,
   originalName,
-  trackName,
+  userName,
   artist,
   genre,
   cbResult
@@ -48,7 +48,7 @@ const uploadTrack = (
       const newTrack = {
         id: newId,
         track: originalName,
-        file: trackName,
+        uploadBy: userName,
         artist: artist,
         genre: genre,
       };

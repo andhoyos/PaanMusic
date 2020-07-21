@@ -1,13 +1,13 @@
 <div class="contentUserTrack">
     <div class="contentUser">
         <img src="img/user.png" class="userPicture">
-        <h1>User Name</h1>
+        <h1>{{user.user}}</h1>
     </div>
     <div class="uploadTrack">
         <form class="upload" action="/tracks" method="POST" enctype="multipart/form-data">
             <input type="text" name="newId" id="newId" style="display: none;">
             <input type="file" name="track" id="track" accept="audio/*" onclick="addId()">
-            <input type="text" name="userName" id="userName" style="display: none;">
+            <input type="text" name="userName" value="{{user.user}}" id="userName" style="display: none;">
             <input type="text" name="artist" id="artist" placeholder="Ingrese Artista">
             <select name="genres" id="genres" required>
                 <option value="AllGeners">--Seleccione un Genero--</option>

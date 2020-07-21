@@ -24,6 +24,12 @@ const upload = multer({ storage: uploadStorage });
 
 const app = express();
 
+app.use(
+  session({
+    secret: "streamingKey",
+  })
+);
+
 app.set("view engine", "handlebars");
 
 app.engine(
@@ -49,6 +55,17 @@ app.get("/", (req, res) => {
 app.get("/users", (req, res) => {
   res.render("users", {
     layout: "userRegister",
+  });
+});
+
+app.get("/logout", (req, res) => {
+  req.session.destroy();
+  res.render("login", {
+    layout: "userLogin",
+    message: {
+      class: "approved",
+      content: "El usuario se desconecto correctamente :)",
+    },
   });
 });
 
@@ -121,10 +138,12 @@ app.post("/uploadTrack", (req, res) => {
   console.log("validacion de ingreso");
   console.log(req.body);
   users.validateUser(req.body.user, req.body.password, (dataUser) => {
-    if (dataUser.confirm) {
+    if (dataUser.user) {
+      req.session.loggedUser = dataUser.user;
       console.log("voy a uploadTrack");
       res.render("tracks", {
         layout: "main",
+        user: req.session.loggedUser,
       });
     } else {
       console.log(dataUser);
@@ -155,6 +174,7 @@ app.post("/tracks", upload.single("track"), (req, res) => {
       console.log(data.track);
       res.render("tracks", {
         layout: "main",
+        user: req.session.loggedUser,
       });
       console.log("ya existe cancion");
       originalName = "";
@@ -170,18 +190,20 @@ app.post("/tracks", upload.single("track"), (req, res) => {
           class: "failed",
           content: "Debe adjuntar un archivo",
         },
+        user: req.session.loggedUser,
       });
 
       return;
     }
 
-    if (!req.body.trackName || !req.body.artist) {
+    if (!req.body.userName || !req.body.artist) {
       res.render("tracks", {
         layout: "main",
         message: {
           class: "failed",
           content: "Debe completar todos los campos",
         },
+        user: req.session.loggedUser,
       });
       originalName = "";
 
@@ -191,7 +213,7 @@ app.post("/tracks", upload.single("track"), (req, res) => {
     tracks.uploadTrack(
       req.body.newId,
       originalName,
-      req.body.trackName,
+      req.body.userName,
       req.body.artist,
       req.body.genres,
       (data) => {
@@ -203,6 +225,7 @@ app.post("/tracks", upload.single("track"), (req, res) => {
               class: "approved",
               content: "Cancion registrada con exito",
             },
+            user: req.session.loggedUser,
           });
           originalName = "";
         }
@@ -215,6 +238,7 @@ app.post("/canciones", (req, res) => {
   tracks.buscar((cancionList) => {
     res.render("canciones", {
       cancion: cancionList,
+      user: req.session.loggedUser,
     });
   });
 });

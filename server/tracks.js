@@ -82,7 +82,7 @@ const buscar = (callRes) => {
       const dataBase = client.db("streaming");
       const dataBaseCollection = dataBase.collection("tracks");
       dataBaseCollection
-        .find({ track: /e/ })
+        .find()
         .limit(12)
         .toArray((err, cancionList) => {
           //si no hay resultados retorna mensaje de error

@@ -12,15 +12,19 @@ ul {
   margin: 0;
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
 body {
-  line-height: 1;
+  line-height: 0;
 }
 
 .tittle {
   color: aliceblue;
   font-family: sans-serif;
   text-align: center;
-  padding: 75px 0 0 0;
+  padding: 10% 0 2% 0;
   font-size: 80px;
 }
 
@@ -37,23 +41,28 @@ body {
 
 .uploadTrack {
   float: right;
-  margin: 50px;
+  margin: 0 50px;
   border: 1px solid blanchedalmond;
   width: 600px;
   height: 300px;
+}
+
+.contentUser {
+  display: inline-block;
+  margin: 15px 0 20px 50px;
+}
+
+#userName {
+  text-align: center;
+  display: inline-block;
 }
 
 .upload {
   margin: 15px;
 }
 
-.contentUser {
-  display: inline-block;
-  margin: 50px 0 50px 50px;
-}
-
 .reg {
-  padding: 10px;
+  padding: 10% 0 5% 0;
   color: rgb(100, 97, 97);
   font-size: 23px;
   margin-bottom: 0;
@@ -93,10 +102,11 @@ input[type="submit"] {
   background: rgb(43, 36, 41);
   color: aliceblue;
 }
+
 input[type="text"] {
   margin-top: 30px;
 }
-.exit:hover,
+
 input[type="submit"]:hover {
   opacity: 0.8;
   cursor: pointer;
@@ -114,6 +124,11 @@ input[type="submit"]:hover {
 
 #contentListTracks {
   flex: 1;
+  overflow-y: scroll;
+}
+
+.contentUserTrack {
+  height: auto;
 }
 
 #contentTrack,
@@ -121,19 +136,12 @@ ul {
   list-style: none;
 }
 
-.exit {
-  font-size: 18px;
-  margin: 20px 20px 0 0;
-  padding: 5px 20px;
-  border: none;
-  background: rgb(43, 36, 41);
-  color: aliceblue;
-  border-radius: 5px;
-  float: right;
-  cursor: pointer;
+#exit {
+  position: sticky;
+  top: 0;
 }
 
-img,
+.exit,
 .userPicture {
   width: 50px;
   float: right;
@@ -141,16 +149,20 @@ img,
 }
 
 .userPicture {
+  margin-bottom: 0;
   float: none;
+  display: inline-block;
 }
 
 .app {
   display: flex;
-  height: 100%;
+  height: auto;
+  max-height: 1500px;
   width: 100%;
 }
 
 .track {
+  line-height: normal;
   padding: 20px;
   border-bottom: 2px solid wheat;
   cursor: pointer;
@@ -159,12 +171,29 @@ img,
   margin: 0;
 }
 
+.track:hover {
+  background: rgb(43, 36, 41);
+  color: aliceblue;
+}
+
 #contentAudio {
   flex: 2;
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
+}
+
+#audio {
+  position: sticky;
+  bottom: 200px;
+  top: 50%;
+}
+
+#audioRep {
+  position: sticky;
+  bottom: 280px;
+  top: 45%;
 }
 
 .failed {
@@ -187,15 +216,12 @@ img,
 
 @media (max-width: 600px) {
   body {
+    height: 100%;
     line-height: 0;
   }
-
   .app {
     flex-direction: column;
-  }
-
-  .app {
-    height: 80%;
+    height: auto;
   }
 
   #contentTrack {
@@ -208,7 +234,11 @@ img,
 
   #contentAudio {
     flex: 1;
+    text-align: center;
+    position: sticky;
+    bottom: 20px;
   }
+
   .tittle {
     font-size: 50px;
   }
@@ -216,10 +246,6 @@ img,
   .login,
   .register {
     margin: 25% auto 20px auto;
-  }
-
-  .contentUser {
-    margin: 50px 0 10px 50px;
   }
 
   .uploadTrack {
@@ -256,10 +282,15 @@ img,
     width: 83%;
   }
 
+  .tittle {
+    padding: 30% 0 2% 0;
+  }
+
   select,
   #submitTrack {
     width: 92%;
   }
+
   .contentUser {
     margin: 50px 0 50px 50px;
   }

@@ -1,8 +1,27 @@
+<div class="contentUser">
+    <img src="img/users/user.png" class="userPicture">
+    <h1 id="userName">{{user.user}}</h1>
+</div>
 <div class="app">
     <div id="contentListTracks">
         <ul id="contentTrack">
             {{#each cancion}}
             <div>
+                {{!-- <li>
+                    <p class="track">ajshdfjkgasfg</p>
+                </li>
+                <li>
+                    <p class="track">ajshdfjkgasfg</p>
+                </li>
+                <li>
+                    <p class="track">ajshdfjkgasfg</p>
+                </li>
+                <li>
+                    <p class="track">ajshdfjkgasfg</p>
+                </li>
+                <li>
+                    <p class="track">ajshdfjkgasfg</p>
+                </li> --}}
                 <li>
                     <p class="track" id="{{this.id}}" onclick="fileName({{this.id}})">{{this.track}}</p>
                 </li>
@@ -10,7 +29,6 @@
             {{/each}}
         </ul>
     </div>
-
     <div id="contentAudio">
         <p id="audioRep"></p>
         <audio id="audio" src="" controls autoplay></audio>

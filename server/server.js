@@ -47,21 +47,16 @@ app.use(express.static(path.join(__dirname, "/browser")));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
-  res.render("login", {
-    layout: "userLogin",
-  });
+  res.render("login");
 });
 
 app.get("/users", (req, res) => {
-  res.render("users", {
-    layout: "userRegister",
-  });
+  res.render("users");
 });
 
 app.get("/logout", (req, res) => {
   req.session.destroy();
   res.render("login", {
-    layout: "userLogin",
     message: {
       class: "approved",
       content: "El usuario se desconecto correctamente :)",
@@ -75,7 +70,6 @@ app.post("/login", (req, res) => {
   users.getUser(req.body.user, (dataUser) => {
     if (!dataUser.confirm) {
       res.render("users", {
-        layout: "userRegister",
         message: {
           class: "failed",
           content: "Ha ocurrido un erro inesperdo :(",
@@ -84,7 +78,6 @@ app.post("/login", (req, res) => {
     }
     if (dataUser.user) {
       res.render("users", {
-        layout: "userRegister",
         message: {
           class: "failed",
           content: "ya existe un usuario registrado con ese nombre",
@@ -96,7 +89,6 @@ app.post("/login", (req, res) => {
 
     if (!req.body.user || !req.body.password) {
       res.render("users", {
-        layout: "userRegister",
         message: {
           class: "failed",
           content: "Debe completar todos los campos",
@@ -108,7 +100,6 @@ app.post("/login", (req, res) => {
 
     if (req.body.password !== req.body.confirmPassword) {
       res.render("users", {
-        layout: "userRegister",
         message: {
           class: "failed",
           content: "Las contraseñas deben ser iguales",
@@ -123,7 +114,6 @@ app.post("/login", (req, res) => {
     users.registerUser(req.body.user, req.body.password, (dataUser) => {
       if (dataUser) {
         res.render("login", {
-          layout: "userLogin",
           message: {
             class: "approved",
             content: "Usuario registrado con exito",
@@ -142,13 +132,11 @@ app.post("/uploadTrack", (req, res) => {
       req.session.loggedUser = dataUser.user;
       console.log("voy a uploadTrack");
       res.render("tracks", {
-        layout: "main",
         user: req.session.loggedUser,
       });
     } else {
       console.log(dataUser);
       res.render("login", {
-        layout: "userLogin",
         message: {
           class: "failed",
           content: "Por favor verifique los datos",
@@ -165,15 +153,12 @@ app.post("/tracks", upload.single("track"), (req, res) => {
     //conexion a base de datos
     if (!data.confirm) {
       console.log("no se procesa registro");
-      res.render("tracks", {
-        layout: "main",
-      });
+      res.render("tracks", {});
       return;
     }
     if (data.track) {
       console.log(data.track);
       res.render("tracks", {
-        layout: "main",
         user: req.session.loggedUser,
       });
       console.log("ya existe cancion");
@@ -185,7 +170,6 @@ app.post("/tracks", upload.single("track"), (req, res) => {
       console.log(req.body);
       console.log(originalName);
       res.render("tracks", {
-        layout: "main",
         message: {
           class: "failed",
           content: "Debe adjuntar un archivo",
@@ -198,7 +182,6 @@ app.post("/tracks", upload.single("track"), (req, res) => {
 
     if (!req.body.userName || !req.body.artist) {
       res.render("tracks", {
-        layout: "main",
         message: {
           class: "failed",
           content: "Debe completar todos los campos",
@@ -220,7 +203,6 @@ app.post("/tracks", upload.single("track"), (req, res) => {
         if (data) {
           console.log(originalName);
           res.render("tracks", {
-            layout: "main",
             message: {
               class: "approved",
               content: "Cancion registrada con exito",

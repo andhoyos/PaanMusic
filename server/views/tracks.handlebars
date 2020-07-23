@@ -1,8 +1,8 @@
+<div class="contentUser">
+    <img src="img/users/user.png" class="userPicture">
+    <h1 id="userName">{{user.user}}</h1>
+</div>
 <div class="contentUserTrack">
-    <div class="contentUser">
-        <img src="img/user.png" class="userPicture">
-        <h1>{{user.user}}</h1>
-    </div>
     <div class="uploadTrack">
         <form class="upload" action="/tracks" method="POST" enctype="multipart/form-data">
             <input type="text" name="newId" id="newId" style="display: none;">
@@ -17,14 +17,13 @@
             <input type="submit" value="Enviar" id="submitTrack">
         </form>
     </div>
+    <div>
+        <form action="/canciones" method="POST">
+            <input type="search" name="cancion" id="cancion">
+            <input type="submit" value="Buscar" id="buscar">
+        </form>
+    </div>
 </div>
-
-{{!-- <div>
-    <form action="/canciones" method="POST">
-        <input type="search" name="cancion" id="cancion">
-        <input type="submit" value="Buscar" id="buscar">
-    </form>
-</div> --}}
 
 {{#if message}}
 <p class="{{message.class}}">{{message.content}}</p>

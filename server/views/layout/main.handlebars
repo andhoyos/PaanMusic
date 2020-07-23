@@ -9,16 +9,24 @@
 </head>
 
 <body>
-    <nav>
+    {{#if user}}
+    <nav id="exit">
         <ul>
             <li>
                 <a href="/logout">
-                    <img src="img/salir1.png" title="Salir">
+                    <img class="exit" src="img/salir1.png" title="Salir">
                 </a>
             </li>
         </ul>
     </nav>
-    <h1 class="tittle">STREAMING</h1>
+
+    <body style="height: fit-content;">
+    </body>
+    {{/if}}
+    <header>
+        <h1 class="tittle">STREAMING</h1>
+    </header>
+
     {{{body}}}
 </body>
 

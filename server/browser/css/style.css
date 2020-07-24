@@ -157,6 +157,7 @@ ul {
 .app {
   display: flex;
   height: auto;
+  min-height: 300px;
   max-height: 1500px;
   width: 100%;
 }
@@ -196,29 +197,23 @@ ul {
   top: 45%;
 }
 
-.failed {
-  width: 30%;
+.failed,
+.approved {
+  width: auto;
   margin: auto;
   text-align: center;
-  color: red;
   font-size: 17px;
   padding: 15px;
 }
 
 .approved {
-  width: 30%;
-  margin: auto;
-  text-align: center;
   color: aliceblue;
-  font-size: 17px;
-  padding: 15px;
+}
+.failed {
+  color: red;
 }
 
 @media (max-width: 600px) {
-  body {
-    height: 100%;
-    line-height: 0;
-  }
   .app {
     flex-direction: column;
     height: auto;

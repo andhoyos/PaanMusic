@@ -68,7 +68,7 @@ const uploadTrack = (
   });
 };
 
-const buscar = (callRes) => {
+const buscar = (cancion, callRes) => {
   mongoClient.connect(mongoUrl, mongoConfig, (err, client) => {
     //si hay error de conexion retorna mensaje de errer
     if (err) {
@@ -82,7 +82,7 @@ const buscar = (callRes) => {
       const dataBase = client.db("streaming");
       const dataBaseCollection = dataBase.collection("tracks");
       dataBaseCollection
-        .find()
+        .find({ track: { $regex: cancion, $options: "i" } })
         .limit(12)
         .toArray((err, cancionList) => {
           //si no hay resultados retorna mensaje de error

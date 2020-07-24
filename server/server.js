@@ -217,7 +217,7 @@ app.post("/tracks", upload.single("track"), (req, res) => {
 });
 
 app.post("/canciones", (req, res) => {
-  tracks.buscar((cancionList) => {
+  tracks.buscar(req.body.cancion, (cancionList) => {
     res.render("canciones", {
       cancion: cancionList,
       user: req.session.loggedUser,

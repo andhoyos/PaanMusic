@@ -3,11 +3,14 @@
  * @param {*} id
  */
 function fileName(id) {
+  const userUp = document.getElementById("up" + id).textContent;
   const name = document.getElementById(id).textContent;
   const repAudio = document.getElementById("audio");
   repAudio.setAttribute("src", `./tracks/${name}`);
   const audioRep = document.getElementById("audioRep");
   audioRep.innerText = name;
+  const uploadBy = document.getElementById("userUp");
+  uploadBy.innerText = `Subido por: ${userUp}`;
 
   console.log(name);
 }

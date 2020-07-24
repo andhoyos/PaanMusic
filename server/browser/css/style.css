@@ -191,10 +191,12 @@ ul {
   top: 50%;
 }
 
-#audioRep {
+.infoTrack {
   position: sticky;
   bottom: 280px;
-  top: 45%;
+  top: 40%;
+  color: aliceblue;
+  font-size: 17px;
 }
 
 .failed,

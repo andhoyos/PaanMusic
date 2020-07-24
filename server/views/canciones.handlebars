@@ -24,13 +24,17 @@
                 </li> --}}
                 <li>
                     <p class="track" id="{{this.id}}" onclick="fileName({{this.id}})">{{this.track}}</p>
+                    <p class="track" id="up{{this.id}}" style="display: none;">{{this.uploadBy}}</p>
                 </li>
             </div>
             {{/each}}
         </ul>
     </div>
     <div id="contentAudio">
-        <p id="audioRep"></p>
+        <div class="infoTrack">
+            <p id="audioRep"></p>
+            <p id="userUp"></p>
+        </div>
         <audio id="audio" src="" controls autoplay></audio>
     </div>
 </div>

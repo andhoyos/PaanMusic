@@ -41,10 +41,14 @@ body {
 
 .uploadTrack {
   float: right;
-  margin: 0 50px;
+  margin: 20px 30px 20px 0;
   border: 1px solid blanchedalmond;
   width: 600px;
   height: 300px;
+}
+
+.upload {
+  margin: 15px;
 }
 
 .contentUser {
@@ -52,13 +56,28 @@ body {
   margin: 15px 0 20px 50px;
 }
 
+.contentQuery {
+  display: block;
+  margin: 20px auto 0 auto;
+}
+
+#formQuery {
+  margin-left: 20px;
+  display: inline-flex;
+}
+
+#cancion {
+  width: 100%;
+  border-radius: 5px 0 0 5px;
+}
+
+#formQuery input {
+  margin: 0;
+}
+
 #userName {
   text-align: center;
   display: inline-block;
-}
-
-.upload {
-  margin: 15px;
 }
 
 .reg {
@@ -112,6 +131,7 @@ input[type="submit"]:hover {
   cursor: pointer;
 }
 #buscar {
+  border-radius: 0 5px 5px 0;
   height: 100%;
   text-indent: -9999px;
   width: 50px;
@@ -119,7 +139,7 @@ input[type="submit"]:hover {
   background-image: url(/img/lupa.png);
   background-repeat: no-repeat;
   background-position: right center;
-  background-color: white;
+  background-color: rgb(223, 222, 222);
 }
 
 #contentListTracks {
@@ -187,13 +207,13 @@ ul {
 
 #audio {
   position: sticky;
-  bottom: 200px;
+  bottom: 50px;
   top: 50%;
 }
 
 .infoTrack {
   position: sticky;
-  bottom: 280px;
+  bottom: 100px;
   top: 40%;
   color: aliceblue;
   font-size: 17px;
@@ -221,6 +241,10 @@ ul {
     height: auto;
   }
 
+  .contentUser {
+    margin: 30px 0 20px 30px;
+  }
+
   #contentTrack {
     padding: 20px;
   }
@@ -234,6 +258,8 @@ ul {
     text-align: center;
     position: sticky;
     bottom: 20px;
+    width: fit-content;
+    margin: auto;
   }
 
   .tittle {
@@ -247,7 +273,6 @@ ul {
 
   .uploadTrack {
     width: auto;
-    margin: 20px;
   }
 
   #newId,
@@ -286,9 +311,5 @@ ul {
   select,
   #submitTrack {
     width: 92%;
-  }
-
-  .contentUser {
-    margin: 50px 0 50px 50px;
   }
 }

@@ -1,6 +1,16 @@
 <div class="contentUser">
     <img src="img/users/user.png" class="userPicture">
     <h1 id="userName">{{user.user}}</h1>
+    <form action="/canciones" method="GET" style="display: inline;">
+        <input type="text" value="{{user.user}}" name="tracksUser" style="display: none;">
+        <button>Mis Canciones</button>
+    </form>
+</div>
+<div class="contentQuery">
+    <form id="formQuery" action="/canciones" method="POST">
+        <input type="search" name="cancion" id="cancion" placeholder="Buscar Canción">
+        <input type="submit" value="Buscar" id="buscar">
+    </form>
 </div>
 <div class="app">
     <div id="contentListTracks">

@@ -1,7 +1,7 @@
 <div class="contentUser">
     <img src="img/users/user.png" class="userPicture">
     <h1 id="userName">{{user.user}}</h1>
-    <form action="/canciones" method="GET" style="display: inline;">
+    <form action="/tracksUser" method="POST" style="display: inline;">
         <input type="text" value="{{user.user}}" name="tracksUser" style="display: none;">
         <button>Mis Canciones</button>
     </form>

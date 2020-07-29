@@ -101,9 +101,42 @@ const buscar = (cancion, callRes) => {
     }
   });
 };
+const tracksUser = (trackUser, callRes) => {
+  mongoClient.connect(mongoUrl, mongoConfig, (err, client) => {
+    if (err) {
+      callRes({
+        message: {
+          class: "warning",
+          text: "No se pudo procesar la busqueda :(",
+        },
+      });
+    } else {
+      const dataBase = client.db("streaming");
+      const dataBaseCollection = dataBase.collection("tracks");
+      dataBaseCollection
+        .find({ uploadBy: trackUser })
+        .limit(12)
+        .toArray((err, cancionList) => {
+          //si no hay resultados retorna mensaje de error
+          if (err) {
+            callRes({
+              message: {
+                class: "warning",
+                text: "No se pudo procesar la busqueda :(",
+              },
+            });
+          } else {
+            callRes(cancionList);
+          }
+          client.close();
+        });
+    }
+  });
+};
 
 module.exports = {
   getTrack,
   uploadTrack,
   buscar,
+  tracksUser,
 };

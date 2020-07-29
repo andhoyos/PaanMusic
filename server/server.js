@@ -218,10 +218,39 @@ app.post("/tracks", upload.single("track"), (req, res) => {
 
 app.post("/canciones", (req, res) => {
   tracks.buscar(req.body.cancion, (cancionList) => {
-    res.render("canciones", {
-      cancion: cancionList,
-      user: req.session.loggedUser,
-    });
+    if (cancionList == "" || cancionList == {}) {
+      res.render("canciones", {
+        message: {
+          class: "failed",
+          content: `No se encontraron resultados para: ${req.body.cancion}`,
+        },
+        user: req.session.loggedUser,
+      });
+    } else {
+      res.render("canciones", {
+        cancion: cancionList,
+        user: req.session.loggedUser,
+      });
+    }
+  });
+});
+
+app.post("/tracksUser", (req, res) => {
+  tracks.tracksUser(req.body.trackUser, (cancionList) => {
+    if (cancionList == "" || cancionList == {}) {
+      res.render("tracks", {
+        message: {
+          class: "failed",
+          content: "Aun no tienes canciones registradas",
+        },
+        user: req.session.loggedUser,
+      });
+    } else {
+      res.render("canciones", {
+        cancion: cancionList,
+        user: req.session.loggedUser,
+      });
+    }
   });
 });
 

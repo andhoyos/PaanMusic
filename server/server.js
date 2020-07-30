@@ -72,7 +72,7 @@ app.post("/login", (req, res) => {
       res.render("users", {
         message: {
           class: "failed",
-          content: "Ha ocurrido un erro inesperdo :(",
+          content: "Ha ocurrido un error inesperado :(",
         },
       });
     }
@@ -80,7 +80,7 @@ app.post("/login", (req, res) => {
       res.render("users", {
         message: {
           class: "failed",
-          content: "ya existe un usuario registrado con ese nombre",
+          content: "El Nombre de Usuario ya esta en uso",
         },
       });
 
@@ -139,7 +139,7 @@ app.post("/uploadTrack", (req, res) => {
       res.render("login", {
         message: {
           class: "failed",
-          content: "Por favor verifique los datos",
+          content: "Nombre de Usuario o Contraseña incorrectos",
         },
       });
     }

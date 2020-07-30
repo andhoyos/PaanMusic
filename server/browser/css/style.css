@@ -126,10 +126,21 @@ input[type="text"] {
   margin-top: 30px;
 }
 
-input[type="submit"]:hover {
+input[type="submit"]:hover,
+.myTracks:hover {
   opacity: 0.8;
   cursor: pointer;
 }
+
+.myTracks {
+  margin-left: 20px;
+  padding: 5px;
+  border: none;
+  background: rgb(43, 36, 41);
+  color: aliceblue;
+  border-radius: 5px;
+}
+
 #buscar {
   border-radius: 0 5px 5px 0;
   height: 100%;
@@ -221,7 +232,7 @@ ul {
 
 .failed,
 .approved {
-  width: auto;
+  display: inherit;
   margin: auto;
   text-align: center;
   font-size: 17px;
@@ -229,7 +240,7 @@ ul {
 }
 
 .approved {
-  color: aliceblue;
+  color: ghostwhite;
 }
 .failed {
   color: red;

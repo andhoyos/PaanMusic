@@ -5,12 +5,15 @@
         <input type="text" value="{{user.user}}" name="tracksUser" style="display: none;">
         <button>Mis Canciones</button>
     </form>
-</div>
-<div class="contentQuery">
-    <form id="formQuery" action="/canciones" method="POST">
-        <input type="search" name="cancion" id="cancion" placeholder="Buscar Canción">
-        <input type="submit" value="Buscar" id="buscar">
-    </form>
+    {{#if message}}
+    <p class="{{message.class}}">{{message.content}}</p>
+    {{/if}}
+    <div class="contentQuery">
+        <form id="formQuery" action="/canciones" method="POST">
+            <input type="search" name="cancion" id="cancion" placeholder="Buscar Canción">
+            <input type="submit" value="Buscar" id="buscar">
+        </form>
+    </div>
 </div>
 <div class="app">
     <div id="contentListTracks">

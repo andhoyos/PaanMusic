@@ -3,10 +3,13 @@
     <h1 id="userName">{{user.user}}</h1>
     <form action="/tracksUser" method="POST" style="display: inline;">
         <input type="text" value="{{user.user}}" name="tracksUser" style="display: none;">
-        <button>Mis Canciones</button>
+        <button class="myTracks">Mis Canciones</button>
     </form>
-    <div>
-        <form action="/canciones" method="POST">
+    {{#if message}}
+    <p class="{{message.class}}">{{message.content}}</p>
+    {{/if}}
+    <div class="contentQuery">
+        <form id="formQuery" action="/canciones" method="POST">
             <input type="search" name="cancion" id="cancion" placeholder="Buscar Canción">
             <input type="submit" value="Buscar" id="buscar">
         </form>
@@ -22,13 +25,15 @@
                     <option value="AllGeners">--Seleccione un Genero--</option>
                     <option value="Bachata">Bachata</option>
                     <option value="Salsa">Salsa</option>
+                    <option value="Bachata">Rock</option>
+                    <option value="Salsa">Reggaeton</option>
+                    <option value="Bachata">Cumbia</option>
+                    <option value="Salsa">Merengue</option>
+                    <option value="Bachata">Vallenato</option>
+                    <option value="Salsa">Otro</option>
                 </select>
                 <input type="submit" value="Enviar" id="submitTrack">
             </form>
         </div>
     </div>
 </div>
-
-{{#if message}}
-<p class="{{message.class}}">{{message.content}}</p>
-{{/if}}

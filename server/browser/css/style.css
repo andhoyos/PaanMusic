@@ -1,5 +1,6 @@
 html,
 body {
+  font-family: sans-serif;
   width: 100%;
   height: 100%;
   background: linear-gradient(120deg, rgb(252, 203, 144), rgb(211, 89, 174));
@@ -22,7 +23,6 @@ body {
 
 .tittle {
   color: aliceblue;
-  font-family: sans-serif;
   text-align: center;
   padding: 10% 0 2% 0;
   font-size: 80px;
@@ -234,6 +234,8 @@ ul {
 .approved {
   display: inherit;
   margin: auto;
+  width: 40%;
+  line-height: normal;
   text-align: center;
   font-size: 17px;
   padding: 15px;
@@ -302,7 +304,8 @@ ul {
 
   .failed,
   .approved {
-    width: auto;
+    width: 60%;
+    margin: 0 15%;
   }
 }
 @media (max-width: 450px) {

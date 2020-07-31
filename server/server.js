@@ -64,6 +64,60 @@ app.get("/logout", (req, res) => {
   });
 });
 
+app.get("/canciones", (req, res) => {
+  if (!req.session.loggedUser) {
+    res.render("login", {
+      message: {
+        class: "failed",
+        content: "Por Favor inicie sesion",
+      },
+    });
+  }
+  tracks.buscar(req.query.cancion, (cancionList) => {
+    if (cancionList == "" || cancionList == {}) {
+      res.render("canciones", {
+        message: {
+          class: "failed",
+          content: `No se encontraron resultados para: ${req.query.cancion}`,
+        },
+        user: req.session.loggedUser,
+      });
+    } else {
+      res.render("canciones", {
+        cancion: cancionList,
+        user: req.session.loggedUser,
+      });
+    }
+  });
+});
+
+app.get("/tracksUser", (req, res) => {
+  if (!req.session.loggedUser) {
+    res.render("login", {
+      message: {
+        class: "failed",
+        content: "Por Favor inicie sesion",
+      },
+    });
+  }
+  tracks.tracksUser(req.query.trackUser, (cancionList) => {
+    if (cancionList == "" || cancionList == {}) {
+      res.render("tracks", {
+        message: {
+          class: "failed",
+          content: "Aun no tienes canciones registradas",
+        },
+        user: req.session.loggedUser,
+      });
+    } else {
+      res.render("canciones", {
+        cancion: cancionList,
+        user: req.session.loggedUser,
+      });
+    }
+  });
+});
+
 app.post("/login", (req, res) => {
   console.log("validacion datos de registro");
 
@@ -213,44 +267,6 @@ app.post("/tracks", upload.single("track"), (req, res) => {
         }
       }
     );
-  });
-});
-
-app.post("/canciones", (req, res) => {
-  tracks.buscar(req.body.cancion, (cancionList) => {
-    if (cancionList == "" || cancionList == {}) {
-      res.render("canciones", {
-        message: {
-          class: "failed",
-          content: `No se encontraron resultados para: ${req.body.cancion}`,
-        },
-        user: req.session.loggedUser,
-      });
-    } else {
-      res.render("canciones", {
-        cancion: cancionList,
-        user: req.session.loggedUser,
-      });
-    }
-  });
-});
-
-app.post("/tracksUser", (req, res) => {
-  tracks.tracksUser(req.body.trackUser, (cancionList) => {
-    if (cancionList == "" || cancionList == {}) {
-      res.render("tracks", {
-        message: {
-          class: "failed",
-          content: "Aun no tienes canciones registradas",
-        },
-        user: req.session.loggedUser,
-      });
-    } else {
-      res.render("canciones", {
-        cancion: cancionList,
-        user: req.session.loggedUser,
-      });
-    }
   });
 });
 

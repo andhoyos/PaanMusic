@@ -1,15 +1,15 @@
 <div class="contentUser">
     <img src="img/users/user.png" class="userPicture">
     <h1 id="userName">{{user.user}}</h1>
-    <form action="/tracksUser" method="POST" style="display: inline;">
+    <form action="/tracksUser" method="GET" style="display: inline;">
         <input type="text" value="{{user.user}}" name="tracksUser" style="display: none;">
         <button class="myTracks">Mis Canciones</button>
     </form>
     {{#if message}}
-    <p class="{{message.class}}">{{message.content}}</p>
+    <p id="message" class="{{message.class}}">{{message.content}}</p>
     {{/if}}
     <div class="contentQuery">
-        <form id="formQuery" action="/canciones" method="POST">
+        <form id="formQuery" action="/canciones" method="GET">
             <input type="search" name="cancion" id="cancion" placeholder="Buscar Canción">
             <input type="submit" value="Buscar" id="buscar">
         </form>

@@ -32,3 +32,10 @@ function addId() {
   let ms = newId(d.getMilliseconds(), 3);
   x.value = "" + h + m + s + ms + "";
 }
+
+const mess = document.getElementById("message");
+if (mess) {
+  setTimeout(() => {
+    mess.style.display = "none";
+  }, 5000);
+}

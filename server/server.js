@@ -66,12 +66,8 @@ app.get("/logout", (req, res) => {
 
 app.get("/canciones", (req, res) => {
   if (!req.session.loggedUser) {
-    res.render("login", {
-      message: {
-        class: "failed",
-        content: "Por Favor inicie sesion",
-      },
-    });
+    res.redirect("/");
+    return;
   }
   tracks.buscar(req.query.cancion, (cancionList) => {
     if (cancionList == "" || cancionList == {}) {
@@ -91,14 +87,20 @@ app.get("/canciones", (req, res) => {
   });
 });
 
+app.get("/uploadTrack", (req, res) => {
+  if (!req.session.loggedUser) {
+    res.redirect("/");
+    return;
+  }
+  res.render("tracks", {
+    user: req.session.loggedUser,
+  });
+});
+
 app.get("/tracksUser", (req, res) => {
   if (!req.session.loggedUser) {
-    res.render("login", {
-      message: {
-        class: "failed",
-        content: "Por Favor inicie sesion",
-      },
-    });
+    res.redirect("/");
+    return;
   }
   tracks.tracksUser(req.query.trackUser, (cancionList) => {
     if (cancionList == "" || cancionList == {}) {

@@ -39,3 +39,12 @@ if (mess) {
     mess.style.display = "none";
   }, 5000);
 }
+
+function config() {
+  const config = document.getElementById("config");
+  if (config.style.display == "none") {
+    config.style.display = "inline-block";
+  } else {
+    config.style.display = "none";
+  }
+}

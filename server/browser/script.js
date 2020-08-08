@@ -9,8 +9,11 @@ function fileName(id) {
   repAudio.setAttribute("src", `./tracks/${name}`);
   const audioRep = document.getElementById("audioRep");
   audioRep.innerText = name;
+  audioRep.style.padding = "10px 10px 0";
+  audioRep.style.minWidth = "300px";
   const uploadBy = document.getElementById("userUp");
   uploadBy.innerText = `Subido por: ${userUp}`;
+  uploadBy.style.padding = "5px 10px";
 
   console.log(name);
 }
@@ -40,11 +43,21 @@ if (mess) {
   }, 5000);
 }
 
+const configUser = document.getElementById("config");
 function config() {
-  const config = document.getElementById("config");
-  if (config.style.display == "none") {
-    config.style.display = "inline-block";
+  if (configUser.style.display == "none") {
+    configUser.style.display = "inline-block";
   } else {
-    config.style.display = "none";
+    configUser.style.display = "none";
   }
 }
+
+document.addEventListener(
+  "click",
+  (event) => {
+    if (configUser.style.display == "inline-block") {
+      configUser.style.display = "none";
+    }
+  },
+  false
+);

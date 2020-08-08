@@ -1,12 +1,12 @@
 <div class="contentUser">
     <img src="img/users/user.png" class="userPicture">
-    <h1 id="userName">
+    <h1 id="userName" onclick="event.stopPropagation()">
         <img src="img/menu.png" onclick="config()" id="menu">
         {{user.user}}
         <ul id="config" style="display: none;">
-            <li><a href="#">Cambiar contarseña</a></li>
-            <li><a href="#">Eliminar cuenta</a></li>
-            <li><a href="#">Salir</a></li>
+            <li style="padding: 5px 0;"><a class="configUser" href="#">Cambiar contarseña</a></li>
+            <li style="padding: 5px 0;"><a class="configUser" href="#">Eliminar cuenta</a></li>
+            <li style="padding: 5px 0;"><a class="configUser" href="#">Salir</a></li>
         </ul>
     </h1>
     <form action="/tracksUser" method="GET" style="display: inline;">
@@ -33,12 +33,12 @@
                     <option value="AllGeners">--Seleccione un Genero--</option>
                     <option value="Bachata">Bachata</option>
                     <option value="Salsa">Salsa</option>
-                    <option value="Bachata">Rock</option>
-                    <option value="Salsa">Reggaeton</option>
-                    <option value="Bachata">Cumbia</option>
-                    <option value="Salsa">Merengue</option>
-                    <option value="Bachata">Vallenato</option>
-                    <option value="Salsa">Otro</option>
+                    <option value="Rock">Rock</option>
+                    <option value="Reggaeton">Reggaeton</option>
+                    <option value="Cumbia">Cumbia</option>
+                    <option value="Merengue">Merengue</option>
+                    <option value="Vallenato">Vallenato</option>
+                    <option value="Otro">Otro</option>
                 </select>
                 <input type="submit" value="Enviar" id="submitTrack">
             </form>

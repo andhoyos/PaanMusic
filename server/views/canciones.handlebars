@@ -1,12 +1,12 @@
 <div class="contentUser">
     <img src="img/users/user.png" class="userPicture">
-    <h1 id="userName">
+    <h1 id="userName" onclick="event.stopPropagation()">
         <img src="img/menu.png" onclick="config()" id="menu">
         {{user.user}}
         <ul id="config" style="display: none;">
-            <li><a href="#">Cambiar contarseña</a></li>
-            <li><a href="#">Eliminar cuenta</a></li>
-            <li><a href="#">Salir</a></li>
+            <li style="padding: 5px 0;"><a class="configUser" href="#">Cambiar contarseña</a></li>
+            <li style="padding: 5px 0;"><a class="configUser" href="#">Eliminar cuenta</a></li>
+            <li style="padding: 5px 0;"><a class="configUser" href="#">Salir</a></li>
         </ul>
     </h1>
     <form action="/tracksUser" method="GET" style="display: inline;">
@@ -14,8 +14,9 @@
         <button>Mis Canciones</button>
     </form>
     <form action="uploadTrack" method="GET" style="display:inline;">
-        <button type="submit" id="addTrack"><img src="img/add-track.png" title="Agregar cancion"
-                class="addTrack"></button>
+        <button type="submit" id="addTrack">
+            <img src="img/add-track.png" title="Agregar cancion" class="addTrack">
+        </button>
     </form>
     {{#if message}}
     <p id="message" class="{{message.class}}">{{message.content}}</p>

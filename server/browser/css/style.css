@@ -92,7 +92,13 @@ body {
 }
 
 #menu {
+  cursor: pointer;
   width: 25px;
+}
+
+.configUser {
+  color: whitesmoke;
+  text-decoration: none;
 }
 
 #config {
@@ -100,6 +106,7 @@ body {
   padding: 5px 10px;
   margin: 30px 20px;
   border: 2px solid darkmagenta;
+  border-radius: 5px;
   position: absolute;
   left: 5%;
   line-height: normal;
@@ -252,11 +259,14 @@ ul {
 }
 
 .infoTrack {
+  background: teal;
   position: sticky;
-  bottom: 100px;
-  top: 40%;
-  color: aliceblue;
+  bottom: 105px;
+  top: 37.4%;
+  color: khaki;
   font-size: 17px;
+  text-align: center;
+  border-radius: 5px;
 }
 
 .failed,
@@ -350,7 +360,7 @@ ul {
   }
 
   .tittle {
-    padding: 30% 0 2% 0;
+    padding: 22% 0 2% 0;
   }
 
   select,

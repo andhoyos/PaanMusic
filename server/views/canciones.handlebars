@@ -4,14 +4,16 @@
         <img src="img/menu.png" onclick="config()" id="menu">
         {{user.user}}
         <ul id="config" style="display: none;">
-            <li style="padding: 5px 0;"><a class="configUser" href="#">Cambiar contarseña</a></li>
-            <li style="padding: 5px 0;"><a class="configUser" href="#">Eliminar cuenta</a></li>
-            <li style="padding: 5px 0;"><a class="configUser" href="#">Salir</a></li>
+            <li class="contentConfigUser" style="padding: 5px 0;"><a class="configUser" href="#">Cambiar contarseña</a>
+            </li>
+            <li class="contentConfigUser" style="padding: 5px 0;"><a class="configUser" href="#">Eliminar cuenta</a>
+            </li>
+            <li class="contentConfigUser" style="padding: 5px 0;"><a class="configUser" href="/logout">Salir</a></li>
         </ul>
     </h1>
     <form action="/tracksUser" method="GET" style="display: inline;">
         <input type="text" value="{{user.user}}" name="tracksUser" style="display: none;">
-        <button>Mis Canciones</button>
+        <button class="myTracks">Mis Canciones</button>
     </form>
     <form action="uploadTrack" method="GET" style="display:inline;">
         <button type="submit" id="addTrack">
@@ -54,6 +56,16 @@
                 </li>
             </div>
             {{/each}}
+            <ul id="pageContent">
+                <li class="page" id="previusPage">
+                    <a class="pageLink" href="/allTracks?page={{results.previous.page}}">Previous</a>
+                </li>
+                <li class="page"><a class="pageLink" id="actualPage"
+                        href="/allTracks?page={{results.actual.page}}">{{results.actual.page}}</a></li>
+                <li class="page">
+                    <a class="pageLink" href="/allTracks?page={{results.next.page}}">Next</a>
+                </li>
+            </ul>
         </ul>
     </div>
     <div id="contentAudio">

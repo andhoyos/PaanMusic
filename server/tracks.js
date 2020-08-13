@@ -70,7 +70,7 @@ const uploadTrack = (
 
 const buscar = (cancion, callRes) => {
   mongoClient.connect(mongoUrl, mongoConfig, (err, client) => {
-    //si hay error de conexion retorna mensaje de errer
+    //si hay error de conexion retorna mensaje de error
     if (err) {
       callRes({
         message: {
@@ -83,7 +83,6 @@ const buscar = (cancion, callRes) => {
       const dataBaseCollection = dataBase.collection("tracks");
       dataBaseCollection
         .find({ track: { $regex: cancion, $options: "i" } })
-        .limit(12)
         .toArray((err, cancionList) => {
           //si no hay resultados retorna mensaje de error
           if (err) {
@@ -101,6 +100,60 @@ const buscar = (cancion, callRes) => {
     }
   });
 };
+
+const allTracks = (pageNumber, callRes) => {
+  mongoClient.connect(mongoUrl, mongoConfig, (err, client) => {
+    if (err) {
+      callRes({
+        message: {
+          class: "warning",
+          text: "No se pudo procesar la busqueda :(",
+        },
+      });
+    } else {
+      const dataBase = client.db("streaming");
+      const dataBaseCollection = dataBase.collection("tracks");
+
+      if (pageNumber == undefined || pageNumber == 0) {
+        pageNumber = 1;
+      }
+      let page = pageNumber;
+
+      const results = {};
+
+      results.actual = {
+        page: parseInt(page),
+      };
+
+      results.next = {
+        page: parseInt(page) + 1,
+      };
+      results.previous = {
+        page: parseInt(page) - 1,
+      };
+
+      dataBaseCollection
+        .find()
+        .skip(20 * (page - 1))
+        .limit(20)
+        .toArray((err, cancionList) => {
+          //si no hay resultados retorna mensaje de error
+          if (err) {
+            callRes({
+              message: {
+                class: "warning",
+                text: "No se pudo procesar la busqueda :(",
+              },
+            });
+          } else {
+            callRes(cancionList, results);
+          }
+          client.close();
+        });
+    }
+  });
+};
+
 const tracksUser = (trackUser, callRes) => {
   mongoClient.connect(mongoUrl, mongoConfig, (err, client) => {
     if (err) {
@@ -115,7 +168,6 @@ const tracksUser = (trackUser, callRes) => {
       const dataBaseCollection = dataBase.collection("tracks");
       dataBaseCollection
         .find({ uploadBy: trackUser })
-        .limit(12)
         .toArray((err, cancionList) => {
           //si no hay resultados retorna mensaje de error
           if (err) {
@@ -139,4 +191,5 @@ module.exports = {
   uploadTrack,
   buscar,
   tracksUser,
+  allTracks,
 };

@@ -40,7 +40,7 @@ const mess = document.getElementById("message");
 if (mess) {
   setTimeout(() => {
     mess.style.display = "none";
-  }, 5000);
+  }, 3000);
 }
 
 const configUser = document.getElementById("config");
@@ -61,3 +61,11 @@ document.addEventListener(
   },
   false
 );
+
+const actualPage = document.getElementById("actualPage").textContent;
+
+if (actualPage == 1) {
+  const previusPage = document.getElementById("previusPage");
+
+  previusPage.style.display = "none";
+}

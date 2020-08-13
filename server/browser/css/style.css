@@ -162,7 +162,8 @@ input[type="text"] {
 }
 
 input[type="submit"]:hover,
-.myTracks:hover {
+.myTracks:hover,
+.page:hover {
   opacity: 0.8;
   cursor: pointer;
 }
@@ -174,6 +175,7 @@ input[type="submit"]:hover,
   background: rgb(43, 36, 41);
   color: aliceblue;
   border-radius: 5px;
+  font-size: 14px;
 }
 
 #buscar {
@@ -235,13 +237,37 @@ ul {
   border-bottom: 2px solid wheat;
   cursor: pointer;
   color: darkmagenta;
-  font-size: 18px;
   margin: 0;
 }
 
 .track:hover {
   background: rgb(43, 36, 41);
   color: aliceblue;
+}
+
+.contentConfigUser:hover {
+  opacity: 0.4;
+}
+
+#pageContent {
+  width: fit-content;
+  padding: 5px;
+  display: flex;
+  margin: auto;
+}
+
+.page {
+  line-height: normal;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin: 10px 2px;
+  background: rgb(43, 36, 41);
+}
+
+.pageLink {
+  text-decoration: none;
+  color: whitesmoke;
+  font-size: 15px;
 }
 
 #contentAudio {
@@ -283,7 +309,7 @@ ul {
 }
 
 .approved {
-  color: ghostwhite;
+  color: aqua;
 }
 .failed {
   color: red;

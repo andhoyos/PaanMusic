@@ -27,6 +27,8 @@ const app = express();
 app.use(
   session({
     secret: "streamingKey",
+    resave: false,
+    saveUninitialized: false,
   })
 );
 
@@ -70,7 +72,10 @@ app.get("/canciones", (req, res) => {
     return;
   }
   tracks.buscar(req.query.cancion, (cancionList) => {
-    if (cancionList == "" || cancionList == {}) {
+    if (!req.query.cancion) {
+      res.redirect("/allTracks");
+      return;
+    } else if (cancionList == "" || cancionList == {}) {
       res.render("canciones", {
         message: {
           class: "failed",
@@ -84,6 +89,29 @@ app.get("/canciones", (req, res) => {
         user: req.session.loggedUser,
       });
     }
+  });
+});
+
+app.get("/allTracks", (req, res) => {
+  if (!req.session.loggedUser) {
+    res.redirect("/");
+    return;
+  }
+  tracks.allTracks(req.query.page, (cancionList, results) => {
+    if (!cancionList) {
+      res.render("canciones", {
+        message: {
+          class: "failed",
+          content: "ha Ocurrido un error por favor intentelo nuevamente",
+        },
+        user: req.session.loggedUser,
+      });
+    }
+    res.render("canciones", {
+      cancion: cancionList,
+      user: req.session.loggedUser,
+      results,
+    });
   });
 });
 
@@ -180,15 +208,28 @@ app.post("/login", (req, res) => {
   });
 });
 
-app.post("/uploadTrack", (req, res) => {
+app.post("/allTracks", (req, res) => {
   console.log("validacion de ingreso");
   console.log(req.body);
   users.validateUser(req.body.user, req.body.password, (dataUser) => {
     if (dataUser.user) {
       req.session.loggedUser = dataUser.user;
-      console.log("voy a uploadTrack");
-      res.render("tracks", {
-        user: req.session.loggedUser,
+      console.log("voy a allTracks");
+      tracks.allTracks(req.query.page, (cancionList, results) => {
+        if (!cancionList) {
+          res.render("canciones", {
+            message: {
+              class: "failed",
+              content: "ha Ocurrido un error por favor intentelo nuevamente",
+            },
+            user: req.session.loggedUser,
+          });
+        }
+        res.render("canciones", {
+          cancion: cancionList,
+          user: req.session.loggedUser,
+          results,
+        });
       });
     } else {
       console.log(dataUser);
@@ -272,6 +313,6 @@ app.post("/tracks", upload.single("track"), (req, res) => {
   });
 });
 
-app.listen(3100, () => {
-  console.log("servidor iniciado en puerto 3100...");
+app.listen(4000, () => {
+  console.log("servidor iniciado en puerto 4000...");
 });

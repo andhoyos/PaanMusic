@@ -66,6 +66,16 @@ app.get("/logout", (req, res) => {
   });
 });
 
+app.get("/changePassword", (req, res) => {
+  if (!req.session.loggedUser) {
+    res.redirect("/");
+    return;
+  }
+  res.render("changePass", {
+    user: req.session.loggedUser,
+  });
+});
+
 app.get("/canciones", (req, res) => {
   if (!req.session.loggedUser) {
     res.redirect("/");
@@ -311,6 +321,48 @@ app.post("/tracks", upload.single("track"), (req, res) => {
       }
     );
   });
+});
+
+app.post("/changePass", (req, res) => {
+  if (!req.session.loggedUser) {
+    res.redirect("/");
+    return;
+  } else {
+    if (
+      req.body.newPassword == "" ||
+      req.body.newPassword !== req.body.confirmPassword
+    ) {
+      res.render("changePass", {
+        message: {
+          class: "failed",
+          content: "las contraseñas deben ser iguales",
+        },
+        user: req.session.loggedUser,
+      });
+    }
+  }
+
+  users.changePass(
+    req.session.loggedUser.user,
+    req.body.newPassword,
+    (result) => {
+      if (result) {
+        res.render("login", {
+          message: {
+            class: "approved",
+            content: "Cambio de contraseña realizado con exito",
+          },
+        });
+      } else {
+        res.render("changePass", {
+          message: {
+            class: "failed",
+            content: "Ha ocurrido un error por favor intentelo nuevamente",
+          },
+        });
+      }
+    }
+  );
 });
 
 app.listen(4000, () => {

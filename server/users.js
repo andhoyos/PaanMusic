@@ -108,8 +108,39 @@ const registerUser = (user, password, cbResult) => {
   });
 };
 
+const changePass = (user, newPassword, cbResult) => {
+  mongoClient.connect(mongoUrl, mongoConfig, (err, client) => {
+    //si hay error de conexion con la base de datos retorna false
+    if (err) {
+      cbResult({
+        confirm: false,
+      });
+    } else {
+      const dataBase = client.db("streaming");
+      const dataBaseCollection = dataBase.collection("user");
+
+      findQuery = { user: user };
+
+      updateQuery = {
+        $set: {
+          password: newPassword,
+        },
+      };
+      dataBaseCollection.updateOne(findQuery, updateQuery, (err, result) => {
+        if (err) {
+          cbResult(false);
+        } else {
+          cbResult(true);
+        }
+        client.close();
+      });
+    }
+  });
+};
+
 module.exports = {
   validateUser,
   getUser,
   registerUser,
+  changePass,
 };

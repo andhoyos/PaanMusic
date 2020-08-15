@@ -1,0 +1,10 @@
+<form class="register" action="/changePass" method="POST">
+    <p class="reg">Cambio de Contraseña</p>
+
+    <input type="password" name="newPassword" id="password" placeholder="Nueva Contraseña">
+    <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Repita Contraseña">
+    <input type="submit" value="Enviar">
+</form>
+{{#if message}}
+<p id="message" class="{{message.class}}" style="position: sticky;bottom:5px">{{message.content}}</p>
+{{/if}}

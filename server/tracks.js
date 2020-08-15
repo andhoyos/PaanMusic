@@ -83,6 +83,7 @@ const buscar = (cancion, callRes) => {
       const dataBaseCollection = dataBase.collection("tracks");
       dataBaseCollection
         .find({ track: { $regex: cancion, $options: "i" } })
+        .sort({ track: 1 })
         .toArray((err, cancionList) => {
           //si no hay resultados retorna mensaje de error
           if (err) {
@@ -134,6 +135,7 @@ const allTracks = (pageNumber, callRes) => {
 
       dataBaseCollection
         .find()
+        .sort({ track: 1 })
         .skip(20 * (page - 1))
         .limit(20)
         .toArray((err, cancionList) => {
@@ -168,6 +170,7 @@ const tracksUser = (trackUser, callRes) => {
       const dataBaseCollection = dataBase.collection("tracks");
       dataBaseCollection
         .find({ uploadBy: trackUser })
+        .sort({ track: 1 })
         .toArray((err, cancionList) => {
           //si no hay resultados retorna mensaje de error
           if (err) {

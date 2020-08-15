@@ -4,9 +4,9 @@
         <img src="img/menu.png" onclick="config()" id="menu">
         {{user.user}}
         <ul id="config" style="display: none;">
-            <li style="padding: 5px 0;"><a class="configUser" href="#">Cambiar contarseña</a></li>
+            <li style="padding: 5px 0;"><a class="configUser" href="/changePassword">Cambiar contarseña</a></li>
             <li style="padding: 5px 0;"><a class="configUser" href="#">Eliminar cuenta</a></li>
-            <li style="padding: 5px 0;"><a class="configUser" href="#">Salir</a></li>
+            <li style="padding: 5px 0;"><a class="configUser" href="/logout">Salir</a></li>
         </ul>
     </h1>
     <form action="/tracksUser" method="GET" style="display: inline;">

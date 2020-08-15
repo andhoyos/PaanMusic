@@ -66,6 +66,9 @@ const actualPage = document.getElementById("actualPage").textContent;
 
 if (actualPage == 1) {
   const previusPage = document.getElementById("previusPage");
-
   previusPage.style.display = "none";
+}
+if (actualPage == "" || actualPage == undefined) {
+  const pageContent = document.getElementById("pageContent");
+  pageContent.style.display = "none";
 }

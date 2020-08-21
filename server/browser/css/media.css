@@ -1,0 +1,79 @@
+@media (max-width: 600px) {
+  .app {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .contentUser {
+    margin: 30px 0 20px 30px;
+  }
+
+  #contentTrack {
+    padding: 20px;
+  }
+
+  #contentListTracks {
+    flex: 3;
+  }
+
+  #contentAudio {
+    flex: 1;
+    text-align: center;
+    position: sticky;
+    bottom: 20px;
+    width: fit-content;
+    margin: auto;
+  }
+
+  .tittle {
+    font-size: 50px;
+  }
+
+  .login,
+  .register {
+    margin: 25% auto 20px auto;
+  }
+
+  .uploadTrack {
+    width: auto;
+  }
+
+  #newId,
+  #track,
+  #artist,
+  select,
+  #submitTrack {
+    margin: 15px auto 0 15px;
+    width: 85%;
+  }
+
+  select,
+  #submitTrack {
+    width: 92%;
+  }
+
+  .failed,
+  .approved {
+    width: 60%;
+    margin: 5% 15% 0 15%;
+  }
+}
+@media (max-width: 450px) {
+  #newId,
+  #track,
+  #artist,
+  select,
+  #submitTrack {
+    margin: 15px auto 0 15px;
+    width: 83%;
+  }
+
+  .tittle {
+    padding: 22% 0 2% 0;
+  }
+
+  select,
+  #submitTrack {
+    width: 92%;
+  }
+}

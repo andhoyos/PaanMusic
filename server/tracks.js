@@ -1,5 +1,6 @@
 const mongoClient = require("mongodb").MongoClient;
-const mongoUrl = "mongodb://localhost:27017";
+const mongoUrl =
+  "mongodb+srv://andresh:andresh@cluster0.xqgd0.mongodb.net/Streaming?retryWrites=true&w=majority";
 const mongoConfig = { useUnifiedTopology: true };
 
 const getTrack = (originalName, cbResult) => {
@@ -9,7 +10,7 @@ const getTrack = (originalName, cbResult) => {
         confirm: false,
       });
     } else {
-      const dataBase = client.db("streaming");
+      const dataBase = client.db("Streaming");
       const dataBaseCollection = dataBase.collection("tracks");
       dataBaseCollection.findOne({ track: originalName }, (err, reply) => {
         if (err) {
@@ -43,7 +44,7 @@ const uploadTrack = (
         confirm: false,
       });
     } else {
-      const dataBase = client.db("streaming");
+      const dataBase = client.db("Streaming");
       const dataBaseCollection = dataBase.collection("tracks");
       const newTrack = {
         id: newId,
@@ -79,7 +80,7 @@ const buscar = (cancion, callRes) => {
         },
       });
     } else {
-      const dataBase = client.db("streaming");
+      const dataBase = client.db("Streaming");
       const dataBaseCollection = dataBase.collection("tracks");
       dataBaseCollection
         .find({ track: { $regex: cancion, $options: "i" } })
@@ -112,7 +113,7 @@ const allTracks = (pageNumber, callRes) => {
         },
       });
     } else {
-      const dataBase = client.db("streaming");
+      const dataBase = client.db("Streaming");
       const dataBaseCollection = dataBase.collection("tracks");
 
       if (pageNumber == undefined || pageNumber == 0) {
@@ -166,7 +167,7 @@ const tracksUser = (trackUser, callRes) => {
         },
       });
     } else {
-      const dataBase = client.db("streaming");
+      const dataBase = client.db("Streaming");
       const dataBaseCollection = dataBase.collection("tracks");
       dataBaseCollection
         .find({ uploadBy: trackUser })

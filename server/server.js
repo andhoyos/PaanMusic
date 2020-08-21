@@ -91,6 +91,10 @@ app.get("/changePassword", (req, res) => {
   });
 });
 
+app.get("/recoverPassword", (req, res) => {
+  res.render("recoverPass");
+});
+
 app.get("/deleteUser", (req, res) => {
   if (!req.session.loggedUser) {
     res.redirect("/");
@@ -127,7 +131,7 @@ app.get("/canciones", (req, res) => {
       res.render("canciones", {
         message: {
           class: "failed",
-          content: `No se encontraron resultados para: ${req.query.cancion}`,
+          content: `No se encontraron resultados para: "${req.query.cancion}"`,
         },
         user: req.session.loggedUser,
       });
@@ -368,6 +372,55 @@ app.post("/tracks", upload.single("track"), (req, res) => {
         }
       }
     );
+  });
+});
+
+app.post("/recoverPass", (req, res) => {
+  users.getUser(req.body.user, (dataUser) => {
+    if (!dataUser.user) {
+      res.render("recoverPass", {
+        message: {
+          class: "failed",
+          content: `Usuario "${req.body.user}" no se encuentra registrado`,
+        },
+      });
+    }
+    if (!req.body.user) {
+      res.render("recoverPass", {
+        message: {
+          class: "failed",
+          content: "Debe completar todos los campos",
+        },
+      });
+    }
+    if (
+      req.body.newPassword == "" ||
+      req.body.newPassword !== req.body.confirmPassword
+    ) {
+      res.render("recoverPass", {
+        message: {
+          class: "failed",
+          content: "las contraseñas deben ser iguales",
+        },
+      });
+    }
+    users.changePass(req.body.user, req.body.newPassword, (result) => {
+      if (result) {
+        res.render("login", {
+          message: {
+            class: "approved",
+            content: "Cambio de contraseña realizado con exito",
+          },
+        });
+      } else {
+        res.render("changePass", {
+          message: {
+            class: "failed",
+            content: "Ha ocurrido un error por favor intentelo nuevamente",
+          },
+        });
+      }
+    });
   });
 });
 

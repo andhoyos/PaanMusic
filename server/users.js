@@ -1,5 +1,6 @@
 const mongoClient = require("mongodb").MongoClient;
-const mongoUrl = "mongodb://localhost:27017";
+const mongoUrl =
+  "mongodb+srv://andresh:andresh@cluster0.xqgd0.mongodb.net/Streaming?retryWrites=true&w=majority";
 const mongoConfig = { useUnifiedTopology: true };
 
 const validateUser = (user, password, cbResult) => {
@@ -13,8 +14,8 @@ const validateUser = (user, password, cbResult) => {
         },
       });
     } else {
-      const dataBase = client.db("streaming");
-      const dataBaseCollection = dataBase.collection("user");
+      const dataBase = client.db("Streaming");
+      const dataBaseCollection = dataBase.collection("users");
 
       const consultUser = {
         user: user,
@@ -60,8 +61,8 @@ const getUser = (user, cbResult) => {
         confirm: false,
       });
     } else {
-      const dataBase = client.db("streaming");
-      const dataBaseCollection = dataBase.collection("user");
+      const dataBase = client.db("Streaming");
+      const dataBaseCollection = dataBase.collection("users");
       dataBaseCollection.findOne({ user: user }, (err, reply) => {
         if (err) {
           cbResult({
@@ -87,8 +88,8 @@ const registerUser = (user, password, avatarName, cbResult) => {
         confirm: false,
       });
     } else {
-      const dataBase = client.db("streaming");
-      const dataBaseCollection = dataBase.collection("user");
+      const dataBase = client.db("Streaming");
+      const dataBaseCollection = dataBase.collection("users");
       const newUser = {
         avatar: avatarName,
         user: user,
@@ -118,8 +119,8 @@ const changePass = (user, newPassword, cbResult) => {
         confirm: false,
       });
     } else {
-      const dataBase = client.db("streaming");
-      const dataBaseCollection = dataBase.collection("user");
+      const dataBase = client.db("Streaming");
+      const dataBaseCollection = dataBase.collection("users");
 
       findQuery = { user: user };
 
@@ -148,8 +149,8 @@ const deleteUser = (user, cbResult) => {
         confirm: false,
       });
     } else {
-      const dataBase = client.db("streaming");
-      const dataBaseCollection = dataBase.collection("user");
+      const dataBase = client.db("Streaming");
+      const dataBaseCollection = dataBase.collection("users");
 
       findQuery = { user: user };
 

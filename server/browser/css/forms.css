@@ -1,0 +1,138 @@
+.login,
+.register {
+  background: aliceblue;
+  width: 280px;
+  height: 300px;
+  margin: 5% auto 20px auto;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  border-radius: 4px;
+  text-align: center;
+}
+
+.register {
+  height: auto;
+  padding-bottom: 20px;
+}
+
+.uploadTrack {
+  float: right;
+  margin: 20px 30px 20px 0;
+  border: 1px solid blanchedalmond;
+  width: 600px;
+  height: 300px;
+}
+
+.upload {
+  margin: 15px;
+}
+.addTrack {
+  margin: auto 0 0 10%;
+  width: 25px;
+}
+
+#addTrack {
+  padding: 0 10px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+#formQuery {
+  margin-left: 20px;
+  display: inline-flex;
+}
+
+#formQuery input {
+  margin: 0;
+}
+
+.reg {
+  padding: 10% 0 5% 0;
+  color: rgb(100, 97, 97);
+  font-size: 23px;
+  margin-bottom: 0;
+}
+
+.register input[type="text"] {
+  margin-top: 10px;
+}
+
+#avatarLabel {
+  margin: 0;
+  padding: 15px 14px;
+  color: grey;
+  cursor: pointer;
+}
+
+#avatar {
+  padding: 15px 0;
+  margin: 10px 0 20px;
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+}
+
+input,
+select,
+label {
+  margin: 10px 20px 0 20px;
+  padding: 15px;
+  width: 70%;
+  background: rgb(223, 222, 222);
+  border: 0;
+  font-size: 16px;
+}
+
+#newId,
+#track,
+#artist,
+select,
+#submitTrack {
+  margin: 15px 15px 0 15px;
+  width: 90%;
+}
+
+select,
+#submitTrack {
+  width: 95%;
+}
+
+input[type="submit"] {
+  margin-bottom: 0;
+  width: 81%;
+  background: rgb(43, 36, 41);
+  color: aliceblue;
+}
+
+input[type="text"] {
+  margin-top: 30px;
+}
+
+input[type="submit"]:hover,
+.myTracks:hover,
+.page:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.myTracks {
+  margin-left: 20px;
+  padding: 5px;
+  border: none;
+  background: rgb(43, 36, 41);
+  color: aliceblue;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+#buscar {
+  border-radius: 0 5px 5px 0;
+  height: 100%;
+  text-indent: -9999px;
+  width: 50px;
+  border: none;
+  background-image: url(/img/lupa.png);
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-color: rgb(223, 222, 222);
+}

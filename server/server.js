@@ -15,10 +15,25 @@ const uploadStorage = multer.diskStorage({
     cbResult(null, "./server/browser/tracks");
   },
   filename: (req, file, cbResult) => {
-    cbResult(null, file.originalname);
-    originalName = file.originalname;
+    let fileOriginalname =
+      file.originalname.charAt(0).toUpperCase() + file.originalname.slice(1);
+    cbResult(null, fileOriginalname);
+    originalName = fileOriginalname;
   },
 });
+
+let avatarName;
+const uploadAvatar = multer.diskStorage({
+  destination: (req, file, cbResult) => {
+    cbResult(null, "./server/browser/img/users");
+  },
+  filename: (req, file, cbResult) => {
+    cbResult(null, file.originalname);
+    avatarName = file.originalname;
+  },
+});
+
+const uploadImg = multer({ storage: uploadAvatar });
 
 const upload = multer({ storage: uploadStorage });
 
@@ -73,6 +88,29 @@ app.get("/changePassword", (req, res) => {
   }
   res.render("changePass", {
     user: req.session.loggedUser,
+  });
+});
+
+app.get("/deleteUser", (req, res) => {
+  if (!req.session.loggedUser) {
+    res.redirect("/");
+    return;
+  }
+  users.deleteUser(req.session.loggedUser.user, (result) => {
+    if (result) {
+      res.render("login", {
+        message: {
+          class: "approved",
+          content: "Se elimino el usuario con exito",
+        },
+      });
+    } else {
+      res.render("canciones", {
+        message: "failed",
+        content:
+          "No se pudo eliminar el usuario por favor intentelo nuevamente",
+      });
+    }
   });
 });
 
@@ -158,10 +196,11 @@ app.get("/tracksUser", (req, res) => {
   });
 });
 
-app.post("/login", (req, res) => {
+app.post("/login", uploadImg.single("avatar"), (req, res) => {
   console.log("validacion datos de registro");
 
   users.getUser(req.body.user, (dataUser) => {
+    console.log(req.body.user);
     if (!dataUser.confirm) {
       res.render("users", {
         message: {
@@ -203,18 +242,27 @@ app.post("/login", (req, res) => {
       return;
     }
 
+    if (!avatarName || avatarName == undefined) {
+      avatarName = "user.png";
+    }
+
     console.log("voy registro de usuarios");
 
-    users.registerUser(req.body.user, req.body.password, (dataUser) => {
-      if (dataUser) {
-        res.render("login", {
-          message: {
-            class: "approved",
-            content: "Usuario registrado con exito",
-          },
-        });
+    users.registerUser(
+      req.body.user,
+      req.body.password,
+      avatarName,
+      (dataUser) => {
+        if (dataUser) {
+          res.render("login", {
+            message: {
+              class: "approved",
+              content: "Usuario registrado con exito",
+            },
+          });
+        }
       }
-    });
+    );
   });
 });
 

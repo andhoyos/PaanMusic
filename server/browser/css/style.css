@@ -1,8 +1,8 @@
-html,
-body {
+html {
   font-family: sans-serif;
   width: 100%;
-  height: 100%;
+  height: fit-content;
+  min-height: 100%;
   background: linear-gradient(120deg, rgb(252, 203, 144), rgb(211, 89, 174));
 }
 
@@ -39,6 +39,11 @@ body {
   text-align: center;
 }
 
+.register {
+  height: auto;
+  padding-bottom: 20px;
+}
+
 .uploadTrack {
   float: right;
   margin: 20px 30px 20px 0;
@@ -68,7 +73,7 @@ body {
 }
 
 .contentQuery {
-  display: block;
+  display: inline-block;
   margin: 20px auto 0 auto;
 }
 
@@ -87,7 +92,6 @@ body {
 }
 
 #userName {
-  text-align: center;
   display: inline-block;
 }
 
@@ -126,8 +130,24 @@ body {
   margin-top: 10px;
 }
 
+#avatarLabel {
+  margin: 0;
+  padding: 15px 14px;
+  color: grey;
+  cursor: pointer;
+}
+
+#avatar {
+  padding: 15px 0;
+  margin: 10px 0 20px;
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+}
+
 input,
-select {
+select,
+label {
   margin: 10px 20px 0 20px;
   padding: 15px;
   width: 70%;
@@ -249,6 +269,10 @@ ul {
   opacity: 0.4;
 }
 
+.contentConfigUser {
+  padding: 5px 0;
+}
+
 #pageContent {
   width: fit-content;
   padding: 5px;
@@ -284,11 +308,16 @@ ul {
   top: 50%;
 }
 
+#audioRep {
+  line-height: normal;
+  max-width: fit-content;
+}
+
 .infoTrack {
   background: teal;
   position: sticky;
   bottom: 105px;
-  top: 37.4%;
+  top: 34%;
   color: khaki;
   font-size: 17px;
   text-align: center;

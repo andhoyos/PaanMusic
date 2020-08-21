@@ -1,19 +1,20 @@
 <div class="contentUser">
-    <img src="img/users/user.png" class="userPicture">
+    <img src="img/users/{{user.avatar}}" class="userPicture">
     <h1 id="userName" onclick="event.stopPropagation()">
         <img src="img/menu.png" onclick="config()" id="menu">
         {{user.user}}
         <ul id="config" style="display: none;">
-            <li class="contentConfigUser" style="padding: 5px 0;"><a class="configUser" href="/changePassword">Cambiar
+            <li class="contentConfigUser"><a class="configUser" href="/changePassword">Cambiar
                     contarseña</a>
             </li>
-            <li class="contentConfigUser" style="padding: 5px 0;"><a class="configUser" href="#">Eliminar cuenta</a>
+            <li class="contentConfigUser"><a class="configUser" href="#" id="deleteUser" onclick="alertUser()">Eliminar
+                    cuenta</a>
             </li>
-            <li class="contentConfigUser" style="padding: 5px 0;"><a class="configUser" href="/logout">Salir</a></li>
+            <li class="contentConfigUser"><a class="configUser" href="/logout">Salir</a></li>
         </ul>
     </h1>
     <form action="/tracksUser" method="GET" style="display: inline;">
-        <input type="text" value="{{user.user}}" name="tracksUser" style="display: none;">
+        <input type="text" value="{{user.user}}" name="trackUser" style="display: none;">
         <button class="myTracks">Mis Canciones</button>
     </form>
     <form action="uploadTrack" method="GET" style="display:inline;">

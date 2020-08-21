@@ -42,6 +42,7 @@ const validateUser = (user, password, cbResult) => {
             cbResult({
               user: {
                 user: entry.user,
+                avatar: entry.avatar,
               },
             });
           }
@@ -78,7 +79,7 @@ const getUser = (user, cbResult) => {
   });
 };
 
-const registerUser = (user, password, cbResult) => {
+const registerUser = (user, password, avatarName, cbResult) => {
   mongoClient.connect(mongoUrl, mongoConfig, (err, client) => {
     //si hay error de conexion con la base de datos retorna false
     if (err) {
@@ -89,6 +90,7 @@ const registerUser = (user, password, cbResult) => {
       const dataBase = client.db("streaming");
       const dataBaseCollection = dataBase.collection("user");
       const newUser = {
+        avatar: avatarName,
         user: user,
         password: password,
       };
@@ -138,9 +140,35 @@ const changePass = (user, newPassword, cbResult) => {
   });
 };
 
+const deleteUser = (user, cbResult) => {
+  mongoClient.connect(mongoUrl, mongoConfig, (err, client) => {
+    //si hay error de conexion con la base de datos retorna false
+    if (err) {
+      cbResult({
+        confirm: false,
+      });
+    } else {
+      const dataBase = client.db("streaming");
+      const dataBaseCollection = dataBase.collection("user");
+
+      findQuery = { user: user };
+
+      dataBaseCollection.deleteOne(findQuery, (err, result) => {
+        if (err) {
+          cbResult(false);
+        } else {
+          cbResult(true);
+        }
+        client.close();
+      });
+    }
+  });
+};
+
 module.exports = {
   validateUser,
   getUser,
   registerUser,
   changePass,
+  deleteUser,
 };

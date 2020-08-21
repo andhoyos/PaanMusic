@@ -52,15 +52,17 @@ function config() {
   }
 }
 
-document.addEventListener(
-  "click",
-  (event) => {
-    if (configUser.style.display == "inline-block") {
-      configUser.style.display = "none";
-    }
-  },
-  false
-);
+if (configUser) {
+  document.addEventListener(
+    "click",
+    (event) => {
+      if (configUser.style.display == "inline-block") {
+        configUser.style.display = "none";
+      }
+    },
+    false
+  );
+}
 
 const actualPage = document.getElementById("actualPage").textContent;
 
@@ -71,4 +73,25 @@ if (actualPage == 1) {
 if (actualPage == "" || actualPage == undefined) {
   const pageContent = document.getElementById("pageContent");
   pageContent.style.display = "none";
+}
+
+const deleteUser = document.getElementById("deleteUser");
+
+function alertUser() {
+  let confirmDelete = confirm("desea eliminar el usuario");
+  if (confirmDelete) {
+    deleteUser.href = "/deleteUser";
+  }
+}
+
+function labelValue() {
+  const avatar = document.getElementById("avatar").value.slice(-25);
+  if (avatar) {
+    const avatarName = document.getElementById("avatarLabel");
+    avatarName.textContent = avatar;
+    avatarName.style.display = "contents";
+    return;
+  }
+
+  console.log(avatar);
 }

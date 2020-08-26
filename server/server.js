@@ -384,14 +384,7 @@ app.post("/recoverPass", (req, res) => {
           content: `Usuario "${req.body.user}" no se encuentra registrado`,
         },
       });
-    }
-    if (!req.body.user) {
-      res.render("recoverPass", {
-        message: {
-          class: "failed",
-          content: "Debe completar todos los campos",
-        },
-      });
+      return;
     }
     if (
       req.body.newPassword == "" ||
@@ -403,6 +396,7 @@ app.post("/recoverPass", (req, res) => {
           content: "las contraseñas deben ser iguales",
         },
       });
+      return;
     }
     users.changePass(req.body.user, req.body.newPassword, (result) => {
       if (result) {
@@ -440,6 +434,7 @@ app.post("/changePass", (req, res) => {
         },
         user: req.session.loggedUser,
       });
+      return;
     }
   }
 

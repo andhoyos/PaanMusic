@@ -27,12 +27,12 @@ function newId(x, n) {
 
 // Añadir value al input del id
 function addId() {
-  let d = new Date();
+  let date = new Date();
   let x = document.getElementById("newId");
-  let h = newId(d.getHours(), 2);
-  let m = newId(d.getMinutes(), 2);
-  let s = newId(d.getSeconds(), 2);
-  let ms = newId(d.getMilliseconds(), 3);
+  let h = newId(date.getHours(), 2);
+  let m = newId(date.getMinutes(), 2);
+  let s = newId(date.getSeconds(), 2);
+  let ms = newId(date.getMilliseconds(), 3);
   x.value = "" + h + m + s + ms + "";
 }
 

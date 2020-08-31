@@ -69,7 +69,7 @@ const uploadTrack = (
   });
 };
 
-const buscar = (cancion, callRes) => {
+const query = (cancion, genreFilter, callRes) => {
   mongoClient.connect(mongoUrl, mongoConfig, (err, client) => {
     //si hay error de conexion retorna mensaje de error
     if (err) {
@@ -82,8 +82,17 @@ const buscar = (cancion, callRes) => {
     } else {
       const dataBase = client.db("Streaming");
       const dataBaseCollection = dataBase.collection("tracks");
+
+      let queryFilter;
+      if (cancion) {
+        queryFilter = { track: { $regex: cancion, $options: "i" } };
+      }
+      if (genreFilter) {
+        queryFilter = { genre: { $regex: genreFilter, $options: "i" } };
+      }
+
       dataBaseCollection
-        .find({ track: { $regex: cancion, $options: "i" } })
+        .find(queryFilter)
         .sort({ track: 1 })
         .toArray((err, cancionList) => {
           //si no hay resultados retorna mensaje de error
@@ -193,7 +202,7 @@ const tracksUser = (trackUser, callRes) => {
 module.exports = {
   getTrack,
   uploadTrack,
-  buscar,
+  query,
   tracksUser,
   allTracks,
 };

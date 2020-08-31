@@ -13,12 +13,24 @@ ul {
   margin: 0;
 }
 
-::-webkit-scrollbar {
-  display: none;
-}
-
 body {
   line-height: 0;
+}
+
+#genre ::-webkit-scrollbar {
+  display: block;
+  overflow: auto;
+}
+
+#genre {
+  right: 20%;
+  position: absolute;
+  margin: auto;
+  max-width: fit-content;
+}
+
+.app ::-webkit-scrollbar {
+  display: none;
 }
 
 .tittle {

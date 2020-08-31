@@ -18,7 +18,7 @@
     <p id="message" class="{{message.class}}">{{message.content}}</p>
     {{/if}}
     <div class="contentQuery">
-        <form id="formQuery" action="/canciones" method="GET">
+        <form id="formQuery" action="/filterTracks" method="GET">
             <input type="search" name="cancion" id="cancion" placeholder="Buscar Canción">
             <input type="submit" value="Buscar" id="buscar">
         </form>
@@ -31,7 +31,7 @@
                 <input type="text" name="userName" value="{{user.user}}" id="userName" style="display: none;">
                 <input type="text" name="artist" id="artist" placeholder="Ingrese Artista">
                 <select name="genres" id="genres" required>
-                    <option value="AllGeners">--Seleccione un Genero--</option>
+                    <option>--Seleccione un Genero--</option>
                     <option value="Bachata">Bachata</option>
                     <option value="Salsa">Salsa</option>
                     <option value="Rock">Rock</option>

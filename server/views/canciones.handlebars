@@ -26,10 +26,26 @@
     <p id="message" class="{{message.class}}">{{message.content}}</p>
     {{/if}}
     <div class="contentQuery">
-        <form id="formQuery" action="/canciones" method="GET">
+        <form id="formQuery" action="/filterTracks" method="GET">
             <input type="search" name="cancion" id="cancion" placeholder="Buscar Canción">
             <input type="submit" value="Buscar" id="buscar">
         </form>
+    </div>
+    <div id="selectGenre">
+        <img src="img/filter.png" id="filter" title="Filtrar Genero" onclick="filter()">
+
+        <select name="genre" id="genre" onchange="changeOption(this)" size="5" style="display: none;">
+            <option>>Filtrar por Genero</option>
+            <option value="filterTracks?genre=Bachata">Bachata</option>
+            <option value="filterTracks?genre=Salsa">Salsa</option>
+            <option value="filterTracks?genre=Rock">Rock</option>
+            <option value="filterTracks?genre=Reggaeton">Reggaeton</option>
+            <option value="filterTracks?genre=Cumbia">Cumbia</option>
+            <option value="filterTracks?genre=Merengue">Merengue</option>
+            <option value="filterTracks?genre=Vallenato">Vallenato</option>
+            <option value="filterTracks?genre=Otro">Otro</option>
+            <option value="allTracks">Todas las Canciones</option>
+        </select>
     </div>
 </div>
 <div class="app">
@@ -37,21 +53,6 @@
         <ul id="contentTrack">
             {{#each cancion}}
             <div>
-                {{!-- <li>
-                    <p class="track">ajshdfjkgasfg</p>
-                </li>
-                <li>
-                    <p class="track">ajshdfjkgasfg</p>
-                </li>
-                <li>
-                    <p class="track">ajshdfjkgasfg</p>
-                </li>
-                <li>
-                    <p class="track">ajshdfjkgasfg</p>
-                </li>
-                <li>
-                    <p class="track">ajshdfjkgasfg</p>
-                </li> --}}
                 <li>
                     <p class="track" id="{{this.id}}" onclick="fileName({{this.id}})">{{this.track}}</p>
                     <p class="track" id="up{{this.id}}" style="display: none;">{{this.uploadBy}}</p>

@@ -118,16 +118,13 @@ app.get("/deleteUser", (req, res) => {
   });
 });
 
-app.get("/canciones", (req, res) => {
+app.get("/filterTracks", (req, res) => {
   if (!req.session.loggedUser) {
     res.redirect("/");
     return;
   }
-  tracks.buscar(req.query.cancion, (cancionList) => {
-    if (!req.query.cancion) {
-      res.redirect("/allTracks");
-      return;
-    } else if (cancionList == "" || cancionList == {}) {
+  tracks.query(req.query.cancion, req.query.genre, (cancionList) => {
+    if (cancionList == "" || cancionList == {}) {
       res.render("canciones", {
         message: {
           class: "failed",

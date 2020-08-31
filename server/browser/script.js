@@ -1,6 +1,7 @@
 /**
  *
  * @param {*} id
+ *
  */
 function fileName(id) {
   const userUp = document.getElementById("up" + id).textContent;
@@ -25,7 +26,9 @@ function newId(x, n) {
   return x;
 }
 
-// Añadir value al input del id
+/**
+ * funcion que crea el id apartir de la hora para la nueva cancion
+ */
 function addId() {
   let date = new Date();
   let x = document.getElementById("newId");
@@ -94,4 +97,29 @@ function labelValue() {
   }
 
   console.log(avatar);
+}
+
+function changeOption(menu) {
+  window.location.href = menu.options[menu.selectedIndex].value;
+}
+
+const selectGenre = document.getElementById("genre");
+function filter() {
+  if (selectGenre.style.display == "none") {
+    selectGenre.style.display = "inline-block";
+  } else {
+    selectGenre.style.display = "none";
+  }
+}
+
+if (selectGenre) {
+  document.addEventListener(
+    "click",
+    (event) => {
+      if (selectGenre.style.display == "inline-block") {
+        selectGenre.style.display = "none";
+      }
+    },
+    false
+  );
 }

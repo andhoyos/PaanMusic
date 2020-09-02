@@ -4,10 +4,11 @@ const path = require("path");
 const multer = require("multer");
 const exphbs = require("express-handlebars");
 const session = require("express-session");
-const readable = require("stream").Readable;
 
 const users = require("./users");
 const tracks = require("./tracks");
+const apiRouter = require("./router/apiRouter");
+const authRouter = require("./router/authRouter");
 
 let originalName;
 const uploadStorage = multer.diskStorage({
@@ -71,16 +72,6 @@ app.get("/users", (req, res) => {
   res.render("users");
 });
 
-app.get("/logout", (req, res) => {
-  req.session.destroy();
-  res.render("login", {
-    message: {
-      class: "approved",
-      content: "El usuario se desconecto correctamente :)",
-    },
-  });
-});
-
 app.get("/changePassword", (req, res) => {
   if (!req.session.loggedUser) {
     res.redirect("/");
@@ -93,108 +84,6 @@ app.get("/changePassword", (req, res) => {
 
 app.get("/recoverPassword", (req, res) => {
   res.render("recoverPass");
-});
-
-app.get("/deleteUser", (req, res) => {
-  if (!req.session.loggedUser) {
-    res.redirect("/");
-    return;
-  }
-  users.deleteUser(req.session.loggedUser.user, (result) => {
-    if (result) {
-      res.render("login", {
-        message: {
-          class: "approved",
-          content: "Se elimino el usuario con exito",
-        },
-      });
-    } else {
-      res.render("canciones", {
-        message: "failed",
-        content:
-          "No se pudo eliminar el usuario por favor intentelo nuevamente",
-      });
-    }
-  });
-});
-
-app.get("/filterTracks", (req, res) => {
-  if (!req.session.loggedUser) {
-    res.redirect("/");
-    return;
-  }
-  tracks.query(req.query.cancion, req.query.genre, (cancionList) => {
-    if (cancionList == "" || cancionList == {}) {
-      res.render("canciones", {
-        message: {
-          class: "failed",
-          content: `No se encontraron resultados para: "${req.query.cancion}"`,
-        },
-        user: req.session.loggedUser,
-      });
-    } else {
-      res.render("canciones", {
-        cancion: cancionList,
-        user: req.session.loggedUser,
-      });
-    }
-  });
-});
-
-app.get("/allTracks", (req, res) => {
-  if (!req.session.loggedUser) {
-    res.redirect("/");
-    return;
-  }
-  tracks.allTracks(req.query.page, (cancionList, results) => {
-    if (!cancionList) {
-      res.render("canciones", {
-        message: {
-          class: "failed",
-          content: "ha Ocurrido un error por favor intentelo nuevamente",
-        },
-        user: req.session.loggedUser,
-      });
-    }
-    res.render("canciones", {
-      cancion: cancionList,
-      user: req.session.loggedUser,
-      results,
-    });
-  });
-});
-
-app.get("/uploadTrack", (req, res) => {
-  if (!req.session.loggedUser) {
-    res.redirect("/");
-    return;
-  }
-  res.render("tracks", {
-    user: req.session.loggedUser,
-  });
-});
-
-app.get("/tracksUser", (req, res) => {
-  if (!req.session.loggedUser) {
-    res.redirect("/");
-    return;
-  }
-  tracks.tracksUser(req.query.trackUser, (cancionList) => {
-    if (cancionList == "" || cancionList == {}) {
-      res.render("tracks", {
-        message: {
-          class: "failed",
-          content: "Aun no tienes canciones registradas",
-        },
-        user: req.session.loggedUser,
-      });
-    } else {
-      res.render("canciones", {
-        cancion: cancionList,
-        user: req.session.loggedUser,
-      });
-    }
-  });
 });
 
 app.post("/login", uploadImg.single("avatar"), (req, res) => {
@@ -264,41 +153,6 @@ app.post("/login", uploadImg.single("avatar"), (req, res) => {
         }
       }
     );
-  });
-});
-
-app.post("/allTracks", (req, res) => {
-  console.log("validacion de ingreso");
-  console.log(req.body);
-  users.validateUser(req.body.user, req.body.password, (dataUser) => {
-    if (dataUser.user) {
-      req.session.loggedUser = dataUser.user;
-      console.log("voy a allTracks");
-      tracks.allTracks(req.query.page, (cancionList, results) => {
-        if (!cancionList) {
-          res.render("canciones", {
-            message: {
-              class: "failed",
-              content: "ha Ocurrido un error por favor intentelo nuevamente",
-            },
-            user: req.session.loggedUser,
-          });
-        }
-        res.render("canciones", {
-          cancion: cancionList,
-          user: req.session.loggedUser,
-          results,
-        });
-      });
-    } else {
-      console.log(dataUser);
-      res.render("login", {
-        message: {
-          class: "failed",
-          content: "Nombre de Usuario o Contraseña incorrectos",
-        },
-      });
-    }
   });
 });
 
@@ -372,91 +226,8 @@ app.post("/tracks", upload.single("track"), (req, res) => {
   });
 });
 
-app.post("/recoverPass", (req, res) => {
-  users.getUser(req.body.user, (dataUser) => {
-    if (!dataUser.user) {
-      res.render("recoverPass", {
-        message: {
-          class: "failed",
-          content: `Usuario "${req.body.user}" no se encuentra registrado`,
-        },
-      });
-      return;
-    }
-    if (
-      req.body.newPassword == "" ||
-      req.body.newPassword !== req.body.confirmPassword
-    ) {
-      res.render("recoverPass", {
-        message: {
-          class: "failed",
-          content: "las contraseñas deben ser iguales",
-        },
-      });
-      return;
-    }
-    users.changePass(req.body.user, req.body.newPassword, (result) => {
-      if (result) {
-        res.render("login", {
-          message: {
-            class: "approved",
-            content: "Cambio de contraseña realizado con exito",
-          },
-        });
-      } else {
-        res.render("changePass", {
-          message: {
-            class: "failed",
-            content: "Ha ocurrido un error por favor intentelo nuevamente",
-          },
-        });
-      }
-    });
-  });
-});
-
-app.post("/changePass", (req, res) => {
-  if (!req.session.loggedUser) {
-    res.redirect("/");
-    return;
-  } else {
-    if (
-      req.body.newPassword == "" ||
-      req.body.newPassword !== req.body.confirmPassword
-    ) {
-      res.render("changePass", {
-        message: {
-          class: "failed",
-          content: "las contraseñas deben ser iguales",
-        },
-        user: req.session.loggedUser,
-      });
-      return;
-    }
-  }
-
-  users.changePass(
-    req.session.loggedUser.user,
-    req.body.newPassword,
-    (result) => {
-      if (result) {
-        res.render("login", {
-          message: {
-            class: "approved",
-            content: "Cambio de contraseña realizado con exito",
-          },
-        });
-      } else {
-        res.render("changePass", {
-          message: {
-            class: "failed",
-            content: "Ha ocurrido un error por favor intentelo nuevamente",
-          },
-        });
-      }
-    }
-  );
-});
+app.use("/auth", authRouter);
+app.use("/api", apiRouter);
 
 app.listen(4000, () => {
   console.log("servidor iniciado en puerto 4000...");

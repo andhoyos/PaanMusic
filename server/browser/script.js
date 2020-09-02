@@ -7,7 +7,7 @@ function fileName(id) {
   const userUp = document.getElementById("up" + id).textContent;
   const name = document.getElementById(id).textContent;
   const repAudio = document.getElementById("audio");
-  repAudio.setAttribute("src", `./tracks/${name}`);
+  repAudio.setAttribute("src", `../tracks/${name}`);
   const audioRep = document.getElementById("audioRep");
   audioRep.innerText = name;
   audioRep.style.padding = "10px 10px 0";
@@ -83,7 +83,7 @@ const deleteUser = document.getElementById("deleteUser");
 function alertUser() {
   let confirmDelete = confirm("desea eliminar el usuario");
   if (confirmDelete) {
-    deleteUser.href = "/deleteUser";
+    deleteUser.href = "/auth/deleteUser";
   }
 }
 
@@ -100,7 +100,9 @@ function labelValue() {
 }
 
 function changeOption(menu) {
-  window.location.href = menu.options[menu.selectedIndex].value;
+  if (menu.options[menu.selectedIndex].value) {
+    window.location.href = `/api/${menu.options[menu.selectedIndex].value}`;
+  }
 }
 
 const selectGenre = document.getElementById("genre");

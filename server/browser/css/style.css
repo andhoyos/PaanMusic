@@ -29,6 +29,17 @@ body {
   max-width: fit-content;
 }
 
+#selectGenre {
+  display: inline-block;
+  width: fit-content;
+}
+
+#selectGenre img {
+  cursor: pointer;
+  width: 28px;
+  margin: auto 0 0 20px;
+}
+
 .app ::-webkit-scrollbar {
   display: none;
 }
@@ -69,7 +80,8 @@ body {
   text-decoration: none;
 }
 
-#config {
+#config,
+#contentGenre {
   background: rgb(43, 36, 41);
   padding: 5px 10px;
   margin: 30px 20px;
@@ -81,6 +93,12 @@ body {
   height: 100px;
   font-size: 15px;
   text-align: start;
+}
+
+#contentGenre {
+  margin: 20px;
+  right: 5%;
+  left: auto;
 }
 
 #contentListTracks {

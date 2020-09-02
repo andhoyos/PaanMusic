@@ -1,24 +1,24 @@
 <div class="contentUser">
-    <img src="img/users/{{user.avatar}}" class="userPicture">
+    <img src="/img/users/{{user.avatar}}" class="userPicture">
     <h1 id="userName" onclick="event.stopPropagation()">
-        <img src="img/menu.png" onclick="config()" id="menu" title="Configurar Usuario">
+        <img src="/img/menu.png" onclick="config()" id="menu" title="Configurar Usuario">
         {{user.user}}
         <ul id="config" style="display: none;">
             <li class="contentConfigUser"><a class="configUser" href="/changePassword">Cambiar contarseña</a></li>
             <li class="contentConfigUser"><a class="configUser" href="#" id="deleteUser" onclick="alertUser()">Eliminar
                     cuenta</a></li>
-            <li class="contentConfigUser"><a class="configUser" href="/logout">Salir</a></li>
+            <li class="contentConfigUser"><a class="configUser" href="/auth/logout">Salir</a></li>
         </ul>
     </h1>
-    <form action="/tracksUser" method="GET" style="display: inline;">
-        <input type="text" value="{{user.user}}" name="tracksUser" style="display: none;">
+    <form action="/api/tracksUser" method="GET" style="display: inline;">
+        <input type="text" value="{{user.user}}" name="trackUser" style="display: none;">
         <button class="myTracks">Mis Canciones</button>
     </form>
     {{#if message}}
     <p id="message" class="{{message.class}}">{{message.content}}</p>
     {{/if}}
     <div class="contentQuery">
-        <form id="formQuery" action="/filterTracks" method="GET">
+        <form id="formQuery" action="/api/filterTracks" method="GET">
             <input type="search" name="cancion" id="cancion" placeholder="Buscar Canción">
             <input type="submit" value="Buscar" id="buscar">
         </form>

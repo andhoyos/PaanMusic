@@ -1,6 +1,9 @@
 /**
  *
- * @param {*} id
+ * @param {number} id
+ * funcion que trae el nombre de la cancion y la asigna al reproductor
+ * indicando la ruta, el nombre de usuario y da estilos a la etiqueta
+ * de la informacion del audio
  *
  */
 function fileName(id) {
@@ -19,16 +22,17 @@ function fileName(id) {
   console.log(name);
 }
 
+/**
+ * funcion que crea el id apartir de la hora para la nueva cancion
+ *
+ */
+
 function newId(x, n) {
   while (x.length < n) {
     x = "0" + x;
   }
   return x;
 }
-
-/**
- * funcion que crea el id apartir de la hora para la nueva cancion
- */
 function addId() {
   let date = new Date();
   let x = document.getElementById("newId");
@@ -46,6 +50,10 @@ if (mess) {
   }, 3000);
 }
 
+/**
+ * funcion que cambia el estilo a la etiqueta de configuracion de usuario
+ * para que solo sea visible cuando el usuario lo solicite
+ */
 const configUser = document.getElementById("config");
 function config() {
   if (configUser.style.display == "none") {
@@ -78,8 +86,11 @@ if (actualPage == "" || actualPage == undefined) {
   pageContent.style.display = "none";
 }
 
+/**
+ * funcion que crea alerta para el usuario que desea eliminar su cuenta
+ * y cambia la ruta si la confirmacion es true
+ */
 const deleteUser = document.getElementById("deleteUser");
-
 function alertUser() {
   let confirmDelete = confirm("desea eliminar el usuario");
   if (confirmDelete) {
@@ -87,6 +98,10 @@ function alertUser() {
   }
 }
 
+/**
+ * funcion que muestra el nombre de la imagen subida por el usuario
+ * en foto de perfil y asigna el texto a la etiqueta label
+ */
 function labelValue() {
   const avatar = document.getElementById("avatar").value.slice(-25);
   if (avatar) {
@@ -99,12 +114,28 @@ function labelValue() {
   console.log(avatar);
 }
 
+/**
+ *
+ * @param {*} menu
+ * funcion que cambia la ruta apartir del valor del option
+ *
+ */
 function changeOption(menu) {
-  if (menu.options[menu.selectedIndex].value) {
-    window.location.href = `/api/${menu.options[menu.selectedIndex].value}`;
+  let optionValue = menu.options[menu.selectedIndex].value;
+
+  if (optionValue) {
+    if (optionValue == "allTracks") {
+      window.location.href = `/api/${optionValue}`;
+    } else {
+      window.location.href = `/api/filterTracks?genre=${optionValue}`;
+    }
   }
 }
 
+/**
+ * funcion que muestra el menu de opciones cuando el usuario
+ * solicita el filtro de los generos
+ */
 const selectGenre = document.getElementById("genre");
 function filter() {
   if (selectGenre.style.display == "none") {

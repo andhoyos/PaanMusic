@@ -3,6 +3,12 @@ const mongoUrl =
   "mongodb+srv://andresh:andresh@cluster0.xqgd0.mongodb.net/Streaming?retryWrites=true&w=majority";
 const mongoConfig = { useUnifiedTopology: true };
 
+/**
+ * funcion que consulta en la DB el nombre de la cancion apartir del paramatro que recibe
+ * @param {string} originalName
+ * @param {*} cbResult callback de resultados que devuleve el nombre de la cancion
+ * si no se puede conectar retorna mensaje de error
+ */
 const getTrack = (originalName, cbResult) => {
   mongoClient.connect(mongoUrl, mongoConfig, (err, client) => {
     if (err) {
@@ -29,6 +35,16 @@ const getTrack = (originalName, cbResult) => {
   });
 };
 
+/**
+ * funcion que registra la nueva cancion en la base de datos
+ * @param {string} newId
+ * @param {string} originalName
+ * @param {string} userName
+ * @param {string} artist
+ * @param {string} genre
+ * @param {*} cbResult callback que retorna confirmacion true o false
+ * de la operacion si no se puede conectar retorna mensaje de error
+ */
 const uploadTrack = (
   newId,
   originalName,
@@ -69,6 +85,13 @@ const uploadTrack = (
   });
 };
 
+/**
+ * funcion que procesa la busqueda apartir del parametro recibido y lo filtra
+ * @param {string} cancion
+ * @param {string} genreFilter
+ * @param {*} callRes  callback que retorna lista de canciones
+ * si no hay conexion retorna mensaje de error
+ */
 const query = (cancion, genreFilter, callRes) => {
   mongoClient.connect(mongoUrl, mongoConfig, (err, client) => {
     //si hay error de conexion retorna mensaje de error
@@ -112,6 +135,14 @@ const query = (cancion, genreFilter, callRes) => {
   });
 };
 
+/**
+ * funcion que trae todas las canciones de la db
+ * realiza el ordenamiento y paginacion de las mismas
+ * @param {*} pageNumber
+ * @param {*} callRes callback que retorna la lista de todas la canciones
+ * si no hay conexion retorna mensaje de error
+ *
+ */
 const allTracks = (pageNumber, callRes) => {
   mongoClient.connect(mongoUrl, mongoConfig, (err, client) => {
     if (err) {
@@ -166,6 +197,13 @@ const allTracks = (pageNumber, callRes) => {
   });
 };
 
+/**
+ * funcion que consulta las canciones subidas por un usuario
+ * apartir del parametro recibido
+ * @param {string} trackUser
+ * @param {*} callRes callback retorna las lista de canciones usbidas por el usuario
+ *
+ */
 const tracksUser = (trackUser, callRes) => {
   mongoClient.connect(mongoUrl, mongoConfig, (err, client) => {
     if (err) {

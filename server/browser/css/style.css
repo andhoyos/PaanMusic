@@ -29,6 +29,12 @@ body {
   max-width: fit-content;
 }
 
+#genre option:hover {
+  transform: scale(1.1);
+  background: rgb(43, 36, 41);
+  color: aliceblue;
+}
+
 #selectGenre {
   display: inline-block;
   width: fit-content;
@@ -95,6 +101,10 @@ body {
   text-align: start;
 }
 
+#config li:hover {
+  transform: scale(1.1);
+}
+
 #contentGenre {
   margin: 20px;
   right: 5%;
@@ -154,10 +164,6 @@ ul {
 .track:hover {
   background: rgb(43, 36, 41);
   color: aliceblue;
-}
-
-.contentConfigUser:hover {
-  opacity: 0.4;
 }
 
 .contentConfigUser {

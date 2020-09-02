@@ -3,6 +3,13 @@ const mongoUrl =
   "mongodb+srv://andresh:andresh@cluster0.xqgd0.mongodb.net/Streaming?retryWrites=true&w=majority";
 const mongoConfig = { useUnifiedTopology: true };
 
+/**
+ * funcion que realiza la validacion de los datos de datos de usuario en la db
+ * apartir de los parametros recibidos
+ * @param {string} user
+ * @param {string} password
+ * @param {*} cbResult callback que retorna el resultado de la validacion
+ */
 const validateUser = (user, password, cbResult) => {
   mongoClient.connect(mongoUrl, mongoConfig, (err, client) => {
     // si hay error en la conexion con la base de datos retorna mensaje de error
@@ -54,6 +61,13 @@ const validateUser = (user, password, cbResult) => {
   });
 };
 
+/**
+ * funcion que consulta el nombre de usuario en la db
+ * apartir del parametro recibido
+ * @param {string} user
+ * @param {*} cbResult callback que retorna la confirmacion true o false
+ * y trae los datos del usuario
+ */
 const getUser = (user, cbResult) => {
   mongoClient.connect(mongoUrl, mongoConfig, (err, client) => {
     if (err) {
@@ -80,6 +94,14 @@ const getUser = (user, cbResult) => {
   });
 };
 
+/**
+ * funcion que procesa el registro de un nuevo usuario
+ * y lo carga en la db
+ * @param {string} user
+ * @param {string} password
+ * @param {string} avatarName
+ * @param {*} cbResult callback que retorna la confirmacion true/false
+ */
 const registerUser = (user, password, avatarName, cbResult) => {
   mongoClient.connect(mongoUrl, mongoConfig, (err, client) => {
     //si hay error de conexion con la base de datos retorna false
@@ -111,6 +133,13 @@ const registerUser = (user, password, avatarName, cbResult) => {
   });
 };
 
+/**
+ * funcion que procesa el cambio de contraseña y lo actualiza en la db
+ * apartir de los parametros recibidos
+ * @param {string} user
+ * @param {string} newPassword
+ * @param {*} cbResult callback que retorna confirmacion true/false
+ */
 const changePass = (user, newPassword, cbResult) => {
   mongoClient.connect(mongoUrl, mongoConfig, (err, client) => {
     //si hay error de conexion con la base de datos retorna false
@@ -141,6 +170,12 @@ const changePass = (user, newPassword, cbResult) => {
   });
 };
 
+/**
+ * funcion que realiza el delete el db del usuario
+ * apartir del parametro recibido
+ * @param {string} user
+ * @param {*} cbResult callback que retorna confirmacion true/false
+ */
 const deleteUser = (user, cbResult) => {
   mongoClient.connect(mongoUrl, mongoConfig, (err, client) => {
     //si hay error de conexion con la base de datos retorna false

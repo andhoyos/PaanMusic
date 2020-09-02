@@ -1,4 +1,4 @@
-# Streaming
+# PaanMusic
 
 Streaming de musica donde se podra subir y descargar canciones.
 Se implementa el back end con Nodejs incluyendo el manejo express, express-handlebars, express-session 

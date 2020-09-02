@@ -214,8 +214,8 @@ ul {
   background: teal;
   position: sticky;
   bottom: 105px;
-  top: 34%;
-  color: khaki;
+  top: 32%;
+  color: chartreuse;
   font-size: 17px;
   text-align: center;
   border-radius: 5px;
@@ -235,7 +235,7 @@ ul {
 }
 
 .approved {
-  color: aqua;
+  color: chartreuse;
 }
 .failed {
   color: red;

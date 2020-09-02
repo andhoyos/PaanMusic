@@ -61,12 +61,12 @@
             {{/each}}
             <ul id="pageContent">
                 <li class="page" id="previusPage">
-                    <a class="pageLink" href="/allTracks?page={{results.previous.page}}">Previous</a>
+                    <a class="pageLink" href="/api/allTracks?page={{results.previous.page}}">Previous</a>
                 </li>
                 <li class="page"><a class="pageLink" id="actualPage"
-                        href="/allTracks?page={{results.actual.page}}">{{results.actual.page}}</a></li>
+                        href="/api/allTracks?page={{results.actual.page}}">{{results.actual.page}}</a></li>
                 <li class="page">
-                    <a class="pageLink" href="/allTracks?page={{results.next.page}}">Next</a>
+                    <a class="pageLink" href="/api/allTracks?page={{results.next.page}}">Next</a>
                 </li>
             </ul>
         </ul>

@@ -18,18 +18,23 @@ for (const value of cancionList) {
  * de la informacion del audio
  *
  */
+const repAudio = document.getElementById("audio");
+const uploadBy = document.getElementById("userUp");
+const audioRep = document.getElementById("audioRep");
+let trackName;
+let user;
+
 function fileName(id) {
   const userUp = document.getElementById("up" + id).textContent;
   const name = document.getElementById(id).textContent;
-  const repAudio = document.getElementById("audio");
   repAudio.setAttribute("src", `../tracks/${name}`);
-  const audioRep = document.getElementById("audioRep");
   audioRep.innerText = name;
   audioRep.style.padding = "10px 10px 0";
   audioRep.style.minWidth = "300px";
-  const uploadBy = document.getElementById("userUp");
   uploadBy.innerText = `Subido por: ${userUp}`;
   uploadBy.style.padding = "5px 10px";
+  trackName = name;
+  user = userUp;
 
   console.log(name);
 }

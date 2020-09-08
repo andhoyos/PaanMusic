@@ -229,6 +229,6 @@ app.post("/tracks", upload.single("track"), (req, res) => {
 app.use("/auth", authRouter);
 app.use("/api", apiRouter);
 
-app.listen(4000, () => {
+app.listen(process.env.PORT || 4000, () => {
   console.log("servidor iniciado en puerto 4000...");
 });

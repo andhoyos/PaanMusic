@@ -72,6 +72,27 @@
     padding: 22% 0 2% 0;
   }
 
+  .userPicture {
+    margin: 20px 0 0 10px;
+  }
+
+  .myTracks {
+    margin-left: auto;
+  }
+
+  #selectGenre img,
+  #formQuery {
+    margin-left: auto;
+  }
+
+  #addTrack {
+    padding: 0;
+  }
+
+  #message {
+    position: relative;
+  }
+
   select,
   #submitTrack {
     width: 92%;

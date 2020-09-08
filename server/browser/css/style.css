@@ -234,6 +234,11 @@ ul {
   border-radius: 8px;
 }
 
+#message {
+  position: sticky;
+  bottom: 5px;
+}
+
 .approved {
   color: chartreuse;
 }

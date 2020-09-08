@@ -35,7 +35,7 @@
         <img src="/img/filter.png" id="filter" title="Filtrar Genero" onclick="filter()">
 
         <select name="genre" id="genre" onchange="changeOption(this)" size="3" style="display: none;">
-            <option value="">>Filtrar por Genero</option>
+            <option value="" selected>>Filtrar por Genero</option>
             <option value="allTracks">Todas las Canciones</option>
             <option value="Bachata">Bachata</option>
             <option value="Salsa">Salsa</option>
@@ -76,6 +76,6 @@
             <p id="audioRep"></p>
             <p id="userUp"></p>
         </div>
-        <audio id="audio" src="" controls autoplay></audio>
+        <audio onended="repAll()" id="audio" src="" controls autoplay></audio>
     </div>
 </div>

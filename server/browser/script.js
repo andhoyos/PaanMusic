@@ -1,3 +1,15 @@
+let arr = [];
+
+const cancionList = document.getElementById("contentTrack").children;
+for (const value of cancionList) {
+  let valueTrack = value.lastElementChild.firstElementChild.textContent;
+  arr.push(valueTrack);
+
+  let index = arr.indexOf("Next");
+  if (index > -1) {
+    arr.splice(index, 1);
+  }
+}
 /**
  *
  * @param {number} id
@@ -20,6 +32,17 @@ function fileName(id) {
   uploadBy.style.padding = "5px 10px";
 
   console.log(name);
+}
+
+function repAll() {
+  let i = arr.indexOf(trackName);
+  if (i < arr.length - 1) {
+    i++;
+    trackName = arr[i];
+    repAudio.setAttribute("src", `../tracks/${trackName}`);
+    audioRep.innerText = trackName;
+    uploadBy.innerText = `Subido por: ${user}`;
+  }
 }
 
 /**

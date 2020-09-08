@@ -3,12 +3,12 @@
     <label id="avatarLabel" for="avatar" onmouseout="labelValue() ">Imagen de Perfil (Opcional)
     </label>
     <input type="file" id="avatar" name="avatar" accept="image/*">
-    <input type="text" name="user" id="userName" placeholder="Nombre de Usuario" minlength="5" required>
+    <input type="text" name="user" id="userName" placeholder="Nombre de Usuario" maxlength="8" required>
     <input type="password" name="password" id="password" placeholder="Contraseña">
     <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Repita Contraseña">
     <input type="submit" value="Enviar">
 
 </form>
 {{#if message}}
-<p id="message" class="{{message.class}}" style="position: sticky;bottom:5px">{{message.content}}</p>
+<p id="message" class="{{message.class}}">{{message.content}}</p>
 {{/if}}

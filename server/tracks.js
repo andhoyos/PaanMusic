@@ -200,11 +200,11 @@ const allTracks = (pageNumber, callRes) => {
 /**
  * funcion que consulta las canciones subidas por un usuario
  * apartir del parametro recibido
- * @param {string} trackUser
+ * @param {string} user
  * @param {*} callRes callback retorna las lista de canciones usbidas por el usuario
  *
  */
-const tracksUser = (trackUser, callRes) => {
+const tracksUser = (user, callRes) => {
   mongoClient.connect(mongoUrl, mongoConfig, (err, client) => {
     if (err) {
       callRes({
@@ -217,7 +217,7 @@ const tracksUser = (trackUser, callRes) => {
       const dataBase = client.db("Streaming");
       const dataBaseCollection = dataBase.collection("tracks");
       dataBaseCollection
-        .find({ uploadBy: trackUser })
+        .find({ uploadBy: user })
         .sort({ track: 1 })
         .toArray((err, cancionList) => {
           //si no hay resultados retorna mensaje de error

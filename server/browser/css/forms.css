@@ -109,20 +109,9 @@ input[type="text"] {
 }
 
 input[type="submit"]:hover,
-.myTracks:hover,
 .page:hover {
   opacity: 0.8;
   cursor: pointer;
-}
-
-.myTracks {
-  margin-left: 20px;
-  padding: 5px;
-  border: none;
-  background: rgb(43, 36, 41);
-  color: aliceblue;
-  border-radius: 5px;
-  font-size: 14px;
 }
 
 #buscar {

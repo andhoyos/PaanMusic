@@ -1,13 +1,15 @@
 let arr = [];
 
-const cancionList = document.getElementById("contentTrack").children;
-for (const value of cancionList) {
-  let valueTrack = value.lastElementChild.firstElementChild.textContent;
-  arr.push(valueTrack);
+const cancionList = document.getElementById("contentTrack");
+if (cancionList) {
+  for (const value of cancionList.children) {
+    let valueTrack = value.lastElementChild.firstElementChild.textContent;
+    arr.push(valueTrack);
 
-  let index = arr.indexOf("Next");
-  if (index > -1) {
-    arr.splice(index, 1);
+    let index = arr.indexOf("Next");
+    if (index > -1) {
+      arr.splice(index, 1);
+    }
   }
 }
 /**
@@ -82,36 +84,38 @@ if (mess) {
  * funcion que cambia el estilo a la etiqueta de configuracion de usuario
  * para que solo sea visible cuando el usuario lo solicite
  */
-const configUser = document.getElementById("config");
 function config() {
+  const configUser = document.getElementById("config");
   if (configUser.style.display == "none") {
     configUser.style.display = "inline-block";
   } else {
     configUser.style.display = "none";
   }
+  if (configUser) {
+    document.addEventListener(
+      "click",
+      (event) => {
+        if (configUser.style.display == "inline-block") {
+          configUser.style.display = "none";
+        }
+      },
+      false
+    );
+  }
 }
 
-if (configUser) {
-  document.addEventListener(
-    "click",
-    (event) => {
-      if (configUser.style.display == "inline-block") {
-        configUser.style.display = "none";
-      }
-    },
-    false
-  );
-}
-
-const actualPage = document.getElementById("actualPage").textContent;
-
-if (actualPage == 1) {
+const actualPage = document.getElementById("actualPage");
+if (actualPage) {  
+  page = actualPage.textContent
+  
+if (page == 1) {
   const previusPage = document.getElementById("previusPage");
   previusPage.style.display = "none";
 }
-if (actualPage == "" || actualPage == undefined) {
+if (page == "" || page == undefined) {
   const pageContent = document.getElementById("pageContent");
   pageContent.style.display = "none";
+}
 }
 
 /**

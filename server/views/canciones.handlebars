@@ -4,6 +4,7 @@
         <img src="/img/menu.png" onclick="config()" id="menu" title="Configurar Usuario">
         {{user.user}}
         <ul id="config" style="display: none;">
+            <li class="contentConfigUser"><a class="configUser" href="/api/tracksUser">Mis canciones</a></li>
             <li class="contentConfigUser"><a class="configUser" href="/changePassword">Cambiar
                     contarseña</a>
             </li>
@@ -13,10 +14,6 @@
             <li class="contentConfigUser"><a class="configUser" href="/auth/logout">Salir</a></li>
         </ul>
     </h1>
-    <form action="/api/tracksUser" method="GET" style="display: inline;">
-        <input type="text" value="{{user.user}}" name="trackUser" style="display: none;">
-        <button class="myTracks">Mis Canciones</button>
-    </form>
     <form action="/api/uploadTrack" method="GET" style="display:inline;">
         <button type="submit" id="addTrack">
             <img src="/img/add-track.png" title="Agregar cancion" class="addTrack">
@@ -61,7 +58,7 @@
             {{/each}}
             <ul id="pageContent">
                 <li class="page" id="previusPage">
-                    <a class="pageLink" href="/api/allTracks?page={{results.previous.page}}">Previous</a>
+                    <a class="pageLink" href="/api/allTracks?page={{results.previous.page}}">Prev</a>
                 </li>
                 <li class="page"><a class="pageLink" id="actualPage"
                         href="/api/allTracks?page={{results.actual.page}}">{{results.actual.page}}</a></li>

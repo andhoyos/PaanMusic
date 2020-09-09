@@ -64,7 +64,7 @@ apiRouter.get("/tracksUser", (req, res) => {
     res.redirect("/");
     return;
   }
-  tracks.tracksUser(req.query.trackUser, (cancionList) => {
+  tracks.tracksUser(req.session.loggedUser.user, (cancionList) => {
     if (cancionList == "" || cancionList == {}) {
       res.render("tracks", {
         message: {

@@ -72,12 +72,8 @@
     padding: 22% 0 2% 0;
   }
 
-  .userPicture {
-    margin: 20px 0 0 10px;
-  }
-
-  .myTracks {
-    margin-left: auto;
+  .contentUser {
+    margin: 30px 0 20px 10px;
   }
 
   #selectGenre img,

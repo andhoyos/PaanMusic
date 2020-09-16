@@ -29,10 +29,13 @@ body {
   max-width: fit-content;
 }
 
-#genre option:hover {
-  transform: scale(1.1);
+#genre option {
   background: rgb(43, 36, 41);
   color: aliceblue;
+}
+
+#genre option:hover {
+  transform: scale(1.1);
 }
 
 #selectGenre {
@@ -51,10 +54,11 @@ body {
 }
 
 .tittle {
-  color: aliceblue;
+  color: darkmagenta;
   text-align: center;
   padding: 10% 0 2% 0;
   font-size: 80px;
+  margin-left: 5%;
 }
 
 .contentUser {
@@ -64,7 +68,7 @@ body {
 
 .contentQuery {
   display: inline-block;
-  margin: 20px auto 0 auto;
+  margin: 20px auto 0 20px;
 }
 
 #cancion {
@@ -87,7 +91,7 @@ body {
 }
 
 #config,
-#contentGenre {
+#genre {
   background: rgb(43, 36, 41);
   padding: 5px 10px;
   margin: 30px 20px;

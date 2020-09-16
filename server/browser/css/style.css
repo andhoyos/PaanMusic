@@ -23,19 +23,18 @@ body {
 }
 
 #genre {
+  border: 2px solid darkmagenta;
+  border-radius: 5px;
   right: 20%;
   position: absolute;
   margin: auto;
   max-width: fit-content;
 }
 
-#genre option {
-  background: rgb(43, 36, 41);
-  color: aliceblue;
-}
-
 #genre option:hover {
   transform: scale(1.1);
+  background: rgb(43, 36, 41);
+  color: aliceblue;
 }
 
 #selectGenre {
@@ -90,8 +89,7 @@ body {
   text-decoration: none;
 }
 
-#config,
-#genre {
+#config {
   background: rgb(43, 36, 41);
   padding: 5px 10px;
   margin: 30px 20px;

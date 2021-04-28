@@ -4,7 +4,7 @@
   "description": "streaming-con-node",
   "main": "server.js",
   "scripts": {
-    "star": "node server/server.js"
+    "start": "node server/server.js"
   },
   "author": "Andres Hoyos",
   "license": "ISC",

@@ -105,17 +105,17 @@ function config() {
 }
 
 const actualPage = document.getElementById("actualPage");
-if (actualPage) {  
-  page = actualPage.textContent
-  
-if (page == 1) {
-  const previusPage = document.getElementById("previusPage");
-  previusPage.style.display = "none";
-}
-if (page == "" || page == undefined) {
-  const pageContent = document.getElementById("pageContent");
-  pageContent.style.display = "none";
-}
+if (actualPage) {
+  page = actualPage.textContent;
+
+  if (page == 1) {
+    const previusPage = document.getElementById("previusPage");
+    previusPage.style.display = "none";
+  }
+  if (page == "" || page == undefined) {
+    const pageContent = document.getElementById("pageContent");
+    pageContent.style.display = "none";
+  }
 }
 
 /**
@@ -123,11 +123,22 @@ if (page == "" || page == undefined) {
  * y cambia la ruta si la confirmacion es true
  */
 const deleteUser = document.getElementById("deleteUser");
+
 function alertUser() {
-  let confirmDelete = confirm("desea eliminar el usuario");
-  if (confirmDelete) {
+  Swal.fire({
+    title: "Are you sure?",
+    text: "You won't be able to revert this!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Yes, delete it!",
+  }).then((result) => {
     deleteUser.href = "/auth/deleteUser";
-  }
+    // if (result.isConfirmed) {
+    //   Swal.fire("Deleted!", "Your user has been deleted.", "success");
+    // }
+  });
 }
 
 /**

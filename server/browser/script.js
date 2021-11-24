@@ -134,10 +134,10 @@ function alertUser() {
     cancelButtonColor: "#d33",
     confirmButtonText: "Yes, delete it!",
   }).then((result) => {
-    deleteUser.href = "/auth/deleteUser";
-    // if (result.isConfirmed) {
-    //   Swal.fire("Deleted!", "Your user has been deleted.", "success");
-    // }
+    if (result.isConfirmed) {
+      window.location.href = "/auth/deleteUser";
+      console.log("usuario borrado");
+    }
   });
 }
 

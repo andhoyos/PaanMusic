@@ -8,5 +8,14 @@
 </form>
 
 {{#if message}}
+{{!-- <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script >
+  Swal.fire({
+  icon: 'error',
+  title: 'Oops...',
+  text: `{{message.content}}`,
+
+})
+</script> --}}
 <p id="message" class="{{message.class}}">{{message.content}}</p>
 {{/if}}

@@ -126,13 +126,13 @@ const deleteUser = document.getElementById("deleteUser");
 
 function alertUser() {
   Swal.fire({
-    title: "Are you sure?",
-    text: "You won't be able to revert this!",
+    title: "Eliminar cuenta?",
+    text: "Esta opcion no se puede revertir!",
     icon: "warning",
     showCancelButton: true,
     confirmButtonColor: "#3085d6",
     cancelButtonColor: "#d33",
-    confirmButtonText: "Yes, delete it!",
+    confirmButtonText: "Si, eliminala!",
   }).then((result) => {
     if (result.isConfirmed) {
       window.location.href = "/auth/deleteUser";

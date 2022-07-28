@@ -1,5 +1,4 @@
 const express = require("express");
-const bodyParser = require("body-parser");
 const path = require("path");
 const multer = require("multer");
 const exphbs = require("express-handlebars");
@@ -52,7 +51,7 @@ app.set("view engine", "handlebars");
 
 app.engine(
   "handlebars",
-  exphbs({
+  exphbs.engine({
     defaultLayout: "main",
     layoutsDir: path.join(__dirname, "views/layout"),
   })
@@ -62,7 +61,7 @@ app.set("views", path.join(__dirname, "views"));
 
 app.use(express.static(path.join(__dirname, "/browser")));
 
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
   res.render("login");
